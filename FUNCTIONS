@@ -1,0 +1,280 @@
+--[[
+FFFFFFFFF    UU      UU    NN      NN    CCCCCCCC    TTTTTTTTTT    IIIIIIIII    OOOOOOOOO    NNN      NN    SSSSSSSS
+FF          UU      UU    NNN     NN   CC                TT          II      OO        OO   NNNN     NN  SS        
+FFFFFFFFF   UU      UU    NN  NN  NN   CC                TT          II      OO        OO   NN NN    NN   SSSSSSS 
+FF           UU    UU     NN    NNNN   CC                TT          II      OO        OO   NN  NN   NN         SS
+FF             UUUU       NN      NN    CCCCCCCC        TT        IIIIIIIII    OOOOOOOOO    NN    NNNN    SSSSSSSS
+
+]]--
+
+--[[
+EEEEEEEEEE    SSSSSSSS    PPPPPPPP
+EE           SS          PP      PP
+EEEEEEEEEE    SSSSSSSS    PPPPPPPP
+EE                   SS   PP
+EEEEEEEEEE    SSSSSSSS    PP
+
+--]]
+
+-----------------PLAYERS ESP
+local nameState = nil
+local studState = nil
+local hpState = nil
+local localPlayer = game.Players.LocalPlayer
+local CurrentCamera = workspace.CurrentCamera
+local worldToViewportPoint = CurrentCamera.worldToViewportPoint
+local HeadOff = Vector3.new(0, 0.5, 0)
+local camera = game:GetService("Workspace").CurrentCamera
+local function esp_function(v, part)
+    local text = Drawing.new("Text")
+    local health = Drawing.new("Text")
+    local studs = Drawing.new("Text")
+
+    text.Visible = false
+    health.Visible = false
+    studs.Visible = false
+    text.Center = true
+    health.Center = true
+    health.Outline = true
+    text.Outline = true
+    studs.Outline = true
+    text.Font = "Verdana"
+    studs.Font = "Verdana"
+    health.Font = "Verdana"
+    
+        local teamColor = v.TeamColor.Color
+    text.Color = teamColor
+    health.Color = Color3.new(0, 255, 0)
+    studs.Color = Color3.new(255, 255, 255)
+    text.Size = 16
+    health.Size = 15
+    studs.Size = 15
+    
+    local function updateColor()
+        local teamColor = v.TeamColor.Color
+        text.Color = teamColor
+    end
+    v:GetPropertyChangedSignal("TeamColor"):Connect(updateColor)
+    
+    local renderConnection = game:GetService("RunService").RenderStepped:Connect(function()
+        if v and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("HumanoidRootPart") and v ~= localPlayer and v.Character.Humanoid.Health > 0 then
+            
+            local pos = math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude)
+            
+            if v.Character[part] then  -- Aquí se utiliza el nuevo argumento "part"
+                local partToHighlight = v.Character[part]
+                local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                local partPosition = worldToViewportPoint(CurrentCamera, partToHighlight.Position + HeadOff)
+                
+                if onScreen then
+                    text.Position = Vector2.new(partPosition.X, partPosition.Y - 20)
+                    health.Position = Vector2.new(partPosition.X + 15, partPosition.Y)
+                    studs.Position = Vector2.new(partPosition.X - 50, partPosition.Y)
+                    text.Text = v.Name
+                    studs.Text = "|" .. pos .. "|"
+                    health.Text = "[" .. math.floor(v.Character.Humanoid.Health) .. "/" .. math.floor(v.Character.Humanoid.MaxHealth) .. "]"
+                    text.Visible = nameState
+                    studs.Visible = studState
+                    health.Visible = hpState
+                else
+                    text.Visible = false
+                    health.Visible = false
+                    studs.Visible = false
+                end
+            else
+                text.Visible = false
+                health.Visible = false
+                studs.Visible = false
+            end
+        else
+            text.Visible = false
+            health.Visible = false
+            studs.Visible = false
+        end
+    end)
+    
+    local playerRemovingConnection = game.Players.PlayerRemoving:Connect(function(removedPlayer)
+        if removedPlayer == v then
+            text:Remove()
+            health:Remove()
+            studs:Remove()
+            renderConnection:Disconnect()
+            playerRemovingConnection:Disconnect()
+        end
+    end)
+end
+
+--[[
+EXAMPLE
+for i, v in pairs(game.Players:GetPlayers()) do
+    if v ~= localPlayer then
+        esp_function(v, "Head")
+    end
+end
+
+
+    game.Players.PlayerAdded:Connect(function(player)
+    if player ~= localPlayer then
+    esp_function(player, "Head")
+    end
+ end)
+]]--
+---------STRUCTURE ESP
+
+local nameState = nil
+local studState = nil
+local hpState = nil
+local localPlayer = game.Players.LocalPlayer
+local CurrentCamera = workspace.CurrentCamera
+local worldToViewportPoint = CurrentCamera.worldToViewportPoint
+local HeadOff = Vector3.new(0, 0.5, 0)
+local camera = game:GetService("Workspace").CurrentCamera
+
+local function esp_function(structure, part, color)
+    local text = Drawing.new("Text")
+    local health = Drawing.new("Text")
+    local studs = Drawing.new("Text")
+    text.Visible = false
+    health.Visible = false
+    studs.Visible = false
+    text.Center = true
+    health.Center = true
+    health.Outline = true
+    text.Outline = true
+    studs.Outline = true
+    text.Font = "Verdana"
+    studs.Font = "Verdana"
+    health.Font = "Verdana"
+    
+    text.Color = color
+    health.Color = Color3.new(0, 255, 0)
+    studs.Color = Color3.new(255, 255, 255)
+    text.Size = 16
+    health.Size = 15
+    studs.Size = 15
+    
+    local renderConnection = game:GetService("RunService").RenderStepped:Connect(function()
+        if structure and structure:FindFirstChild(part) then
+            local partToHighlight = structure[part]
+            local Vector, onScreen = camera:worldToViewportPoint(structure.PrimaryPart.Position)
+            local partPosition = worldToViewportPoint(CurrentCamera, partToHighlight.Position + HeadOff)
+            
+            if onScreen then
+                local pos = math.floor((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - structure.PrimaryPart.Position).magnitude)
+                local hp = math.floor(structure.Health.Value)
+
+                text.Position = Vector2.new(partPosition.X, partPosition.Y - 20)
+                health.Position = Vector2.new(partPosition.X + 15, partPosition.Y)
+                studs.Position = Vector2.new(partPosition.X - 50, partPosition.Y)
+                text.Text = structure.Name
+                studs.Text = "|" .. pos .. "|"
+                health.Text = "["..hp.."]"
+                text.Visible = nameState
+                studs.Visible = studState
+                health.Visible = hpState
+                
+            else
+                text.Visible = false
+                health.Visible = false
+                studs.Visible = false
+            end
+        else
+            text.Visible = false
+            health.Visible = false
+            studs.Visible = false
+        end
+    end)
+    
+    structure.ChildAdded:Connect(function(child)
+        if child.Name == part then
+            wait()  -- Pequeña espera para dar tiempo a que se cree el objeto.
+            renderConnection:Fire()
+        end
+    end)
+    
+    structure.ChildRemoved:Connect(function(child)
+        if child.Name == part then
+            text.Visible = false
+            health.Visible = false
+            studs.Visible = false
+        end
+    end)
+end
+
+--[[
+EXAMPLE
+for i, structure in pairs(workspace.Resources:GetChildren()) do
+    if structure.Name == "Small Tree" then
+        esp_function(structure, "Reference", Color3.new(177, 0, 0))
+    end
+end
+
+workspace.Resources.ChildAdded:Connect(function(child)
+    if child.Name == "Small Tree" then
+        esp_function(child, "Reference", Color3.new(177, 0, 0))
+    end
+end)
+]]--
+
+function tp(x, y, z)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z)
+end
+
+--EXAMPLE "tp(100, 414, -130)
+
+function moveCharacter(positions, speed, tween, pauseTime)
+    local position = positions
+    local n = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local v = speed or getgenv().twsp -- velocidad por defecto si no se proporciona una
+    local w
+    local c = nil -- variable para el tween actual
+    
+    local startPos = n.Position -- posición inicial del personaje
+    
+    for i, pos in ipairs(position) do
+        local u = pos
+        
+        if pauseTime then
+            -- Si hay un tiempo de pausa, calcula el tiempo restante para el tween y crea un nuevo tween desde la posición actual hasta la siguiente posición
+            local remainingTime = math.max(0, w - (tick() - pauseTime))
+            w = remainingTime
+            startPos = n.Position
+            u = position[i+1]
+        else
+            -- Si no hay tiempo de pausa, calcula el tiempo normal para el tween
+            w = math.round(math.abs((n.Position - u.Position).Magnitude)) / tonumber(v)
+        end
+        
+        c = game:GetService("TweenService"):Create(n,
+            TweenInfo.new(tonumber(w), Enum.EasingStyle.Linear),
+            {CFrame = u}
+        )
+        c:Play()
+        wait(w) -- Esperar a que termine la animación antes de continuar
+        
+        if not c.PlaybackState == Enum.PlaybackState.Completed then
+            -- Si el tween no ha terminado completamente, cancela el tween y establece el tiempo de pausa
+            c:Cancel()
+            tween = c
+            pauseTime = tick()
+            break
+        end
+    end
+end
+
+--[[ EXAMPLE
+            local positions = {--ADD YOUR POSITIONS, YOU CAN ADD [5], [6]... ETC
+                [1] = CFrame.new(965, -3, -1387),
+                [2] = CFrame.new(915, -3, -1384),
+                [3] = CFrame.new(910, -1, -1422),
+                [4] = CFrame.new(949, -3, -1438),
+            }
+            moveCharacter(positions, getgenv().twsp, tween, pauseTime)
+            if not URGETGENV then
+                if tween then
+                    tween:Cancel()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                end
+            end
+            ]]--
+----------------------------------------------------
