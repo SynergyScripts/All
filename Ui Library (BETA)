@@ -715,3 +715,5 @@ function lib:MakeSlider(parent, name, minvalue, maxvalue, callback)
 		end)
 	end)
 end
+
+return lib
