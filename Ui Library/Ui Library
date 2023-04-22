@@ -29,6 +29,7 @@ Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.136727616, 0, 0.0694779232, 0)
 Main.Size = UDim2.new(0.59, 0, 0.84, 0)
 Main.Draggable = true
+
 UICorner.CornerRadius = UDim.new(0, 4)
 UICorner.Parent = Main
 
@@ -428,6 +429,572 @@ function lib:MakeDropdown(parent, DropdownMainText, Contents, callback)
 	end
 
 	CreateContents(Contents)
+
+end
+
+function lib:MakePicker(parent, text, callback)
+callback = callback or function() end
+	-- Gui to Lua
+	-- Version: 3.2
+
+	-- Instances:
+
+	local Picker = Instance.new("Frame")
+	local UICorner = Instance.new("UICorner")
+	local ColorPickerText = Instance.new("TextLabel")
+	local Action = Instance.new("TextButton")
+	local Color = Instance.new("Frame")
+	local UICorner_2 = Instance.new("UICorner")
+	local ColorUI = Instance.new("Frame")
+	local ColorPickers = Instance.new("Frame")
+	local Vertical = Instance.new("Frame")
+	local ColorPickerArea = Instance.new("Frame")
+	local Picker_2 = Instance.new("Frame")
+	local UICorner_3 = Instance.new("UICorner")
+	local UIGradent = Instance.new("UIGradient")
+	local UICorner_4 = Instance.new("UICorner")
+	local UICorner_5 = Instance.new("UICorner")
+	local Horizontal = Instance.new("Frame")
+	local UICorner_6 = Instance.new("UICorner")
+	local ColorPickerArea_2 = Instance.new("Frame")
+	local Picker_3 = Instance.new("Frame")
+	local UICorner_7 = Instance.new("UICorner")
+	local UICorner_8 = Instance.new("UICorner")
+	local Rainbow = Instance.new("UIGradient")
+	local UICorner_9 = Instance.new("UICorner")
+	local RGBInput = Instance.new("Frame")
+	local UICorner_10 = Instance.new("UICorner")
+	local R = Instance.new("Frame")
+	local ColorName = Instance.new("TextLabel")
+	local ValueBox = Instance.new("TextBox")
+	local UICorner_11 = Instance.new("UICorner")
+	local G = Instance.new("Frame")
+	local ColorName_2 = Instance.new("TextLabel")
+	local ValueBox_2 = Instance.new("TextBox")
+	local UICorner_12 = Instance.new("UICorner")
+	local B = Instance.new("Frame")
+	local ColorName_3 = Instance.new("TextLabel")
+	local ValueBox_3 = Instance.new("TextBox")
+	local UICorner_13 = Instance.new("UICorner")
+
+	--Properties:
+
+	Picker.Name = "Picker"
+	Picker.Parent = parent
+	Picker.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+	Picker.Position = UDim2.new(0.0155732548, 0, 0.615317941, 0)
+	Picker.Size = UDim2.new(0, 562, 0, 38)
+
+	UICorner.Parent = Picker
+
+	ColorPickerText.Name = "ColorPickerText"
+	ColorPickerText.Parent = Picker
+	ColorPickerText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ColorPickerText.BackgroundTransparency = 1.000
+	ColorPickerText.Position = UDim2.new(0.0154185444, 0, 0.263157904, 0)
+	ColorPickerText.Size = UDim2.new(0, 439, 0, 22)
+	ColorPickerText.Font = Enum.Font.JosefinSans
+	ColorPickerText.Text = text
+	ColorPickerText.TextColor3 = Color3.fromRGB(225, 225, 225)
+	ColorPickerText.TextScaled = true
+	ColorPickerText.TextSize = 14.000
+	ColorPickerText.TextWrapped = true
+	ColorPickerText.TextXAlignment = Enum.TextXAlignment.Left
+
+	Action.Name = "Action"
+	Action.Parent = Picker
+	Action.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Action.BackgroundTransparency = 1.000
+	Action.Size = UDim2.new(1, 0, 1, 0)
+	Action.Font = Enum.Font.SourceSans
+	Action.Text = ""
+	Action.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Action.TextSize = 14.000
+
+	Color.Name = "Color"
+	Color.Parent = Picker
+	Color.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	Color.Position = UDim2.new(0.896475792, 0, 0.210526317, 0)
+	Color.Size = UDim2.new(0, 45, 0, 21)
+
+	UICorner_2.Parent = Color
+
+	ColorUI.Name = "ColorUI"
+	ColorUI.Parent = Picker
+	ColorUI.BackgroundColor3 = Color3.fromRGB(23, 23, 23)
+	ColorUI.BorderColor3 = Color3.fromRGB(38, 38, 38)
+	ColorUI.BorderSizePixel = 2
+	ColorUI.Position = UDim2.new(0, 0, 1, 0)
+	ColorUI.Size = UDim2.new(0, 453, 0, 129)
+	ColorUI.Visible = false
+
+	ColorPickers.Name = "ColorPickers"
+	ColorPickers.Parent = ColorUI
+	ColorPickers.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ColorPickers.BackgroundTransparency = 1.000
+	ColorPickers.Position = UDim2.new(-0.00180119276, 0, -0.00353783369, 0)
+	ColorPickers.Size = UDim2.new(1, 0, 1, 0)
+
+	Vertical.Name = "Vertical"
+	Vertical.Parent = ColorPickers
+	Vertical.AnchorPoint = Vector2.new(0.5, 0.5)
+	Vertical.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+	Vertical.BackgroundTransparency = 1.000
+	Vertical.BorderSizePixel = 0
+	Vertical.Position = UDim2.new(0.927431822, 0, 0.499000013, 0)
+	Vertical.Size = UDim2.new(0.107632093, 0, 0.918971777, 0)
+
+	ColorPickerArea.Name = "ColorPickerArea"
+	ColorPickerArea.Parent = Vertical
+	ColorPickerArea.Active = true
+	ColorPickerArea.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ColorPickerArea.BorderSizePixel = 0
+	ColorPickerArea.Position = UDim2.new(0.596175492, 0, 0.00110334251, 0)
+	ColorPickerArea.Size = UDim2.new(0.568842232, 0, 0.933330476, 0)
+
+	Picker_2.Name = "Picker"
+	Picker_2.Parent = ColorPickerArea
+	Picker_2.BackgroundColor3 = Color3.fromRGB(27, 42, 53)
+	Picker_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+	Picker_2.BorderSizePixel = 0
+	Picker_2.Position = UDim2.new(0, 0, 0.5, 0)
+	Picker_2.Size = UDim2.new(1, 0, 0.0149999997, 0)
+
+	UICorner_3.CornerRadius = UDim.new(1, 0)
+	UICorner_3.Parent = Picker_2
+
+	UIGradent.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(255, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))}
+	UIGradent.Rotation = 90
+	UIGradent.Name = "UIGradent"
+	UIGradent.Parent = ColorPickerArea
+
+	UICorner_4.CornerRadius = UDim.new(0, 10)
+	UICorner_4.Parent = ColorPickerArea
+
+	UICorner_5.CornerRadius = UDim.new(0, 10)
+	UICorner_5.Parent = Vertical
+
+	Horizontal.Name = "Horizontal"
+	Horizontal.Parent = ColorPickers
+	Horizontal.AnchorPoint = Vector2.new(0.5, 0.5)
+	Horizontal.BackgroundColor3 = Color3.fromRGB(250, 250, 250)
+	Horizontal.BackgroundTransparency = 1.000
+	Horizontal.BorderSizePixel = 0
+	Horizontal.Position = UDim2.new(0.44618395, 0, 0.50081104, 0)
+	Horizontal.Size = UDim2.new(0.892367899, 0, 0.996183217, 0)
+
+	UICorner_6.CornerRadius = UDim.new(0, 10)
+	UICorner_6.Parent = Horizontal
+
+	ColorPickerArea_2.Name = "ColorPickerArea"
+	ColorPickerArea_2.Parent = Horizontal
+	ColorPickerArea_2.Active = true
+	ColorPickerArea_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ColorPickerArea_2.BorderSizePixel = 0
+	ColorPickerArea_2.Position = UDim2.new(0.0196350683, 0, 0.0379530638, 0)
+	ColorPickerArea_2.Size = UDim2.new(1.00899446, 0, 0.860991061, 0)
+
+	Picker_3.Name = "Picker"
+	Picker_3.Parent = ColorPickerArea_2
+	Picker_3.BackgroundColor3 = Color3.fromRGB(27, 42, 53)
+	Picker_3.BackgroundTransparency = 1.000
+	Picker_3.BorderColor3 = Color3.fromRGB(27, 42, 53)
+	Picker_3.BorderSizePixel = 0
+	Picker_3.Size = UDim2.new(0.0170000009, 0, 1, 0)
+
+	UICorner_7.CornerRadius = UDim.new(1, 0)
+	UICorner_7.Parent = Picker_3
+
+	UICorner_8.CornerRadius = UDim.new(0, 10)
+	UICorner_8.Parent = ColorPickerArea_2
+
+	Rainbow.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 4)), ColorSequenceKeypoint.new(0.20, Color3.fromRGB(255, 255, 0)), ColorSequenceKeypoint.new(0.40, Color3.fromRGB(0, 255, 0)), ColorSequenceKeypoint.new(0.60, Color3.fromRGB(0, 255, 255)), ColorSequenceKeypoint.new(0.80, Color3.fromRGB(0, 0, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 0, 255))}
+	Rainbow.Name = "Rainbow"
+	Rainbow.Parent = ColorPickerArea_2
+
+	UICorner_9.Parent = ColorPickers
+
+	RGBInput.Name = "RGBInput"
+	RGBInput.Parent = ColorPickers
+	RGBInput.AnchorPoint = Vector2.new(0.5, 0.5)
+	RGBInput.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	RGBInput.Position = UDim2.new(0.434999973, 0, 0.94911629, 0)
+	RGBInput.Size = UDim2.new(0.736720562, 0, 0.101767823, 0)
+	RGBInput.Visible = false
+
+	UICorner_10.CornerRadius = UDim.new(0.5, 0)
+	UICorner_10.Parent = RGBInput
+
+	R.Name = "R"
+	R.Parent = RGBInput
+	R.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	R.BackgroundTransparency = 1.000
+	R.BorderSizePixel = 0
+	R.Size = UDim2.new(0.330000013, 0, 1, 0)
+
+	ColorName.Name = "ColorName"
+	ColorName.Parent = R
+	ColorName.AnchorPoint = Vector2.new(0, 0.5)
+	ColorName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ColorName.BackgroundTransparency = 1.000
+	ColorName.BorderSizePixel = 0
+	ColorName.Position = UDim2.new(0, 0, 0.5, 0)
+	ColorName.Size = UDim2.new(0.25, 0, 0.800000012, 0)
+	ColorName.Font = Enum.Font.SourceSans
+	ColorName.Text = "R"
+	ColorName.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ColorName.TextScaled = true
+	ColorName.TextSize = 14.000
+	ColorName.TextWrapped = true
+
+	ValueBox.Name = "ValueBox"
+	ValueBox.Parent = R
+	ValueBox.AnchorPoint = Vector2.new(0, 0.5)
+	ValueBox.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
+	ValueBox.BorderSizePixel = 0
+	ValueBox.Position = UDim2.new(0.25, 0, 0.5, 0)
+	ValueBox.Size = UDim2.new(0.75, 0, 0.800000012, 0)
+	ValueBox.Font = Enum.Font.SourceSans
+	ValueBox.Text = "0"
+	ValueBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ValueBox.TextScaled = true
+	ValueBox.TextSize = 14.000
+	ValueBox.TextWrapped = true
+
+	UICorner_11.CornerRadius = UDim.new(0.5, 0)
+	UICorner_11.Parent = ValueBox
+
+	G.Name = "G"
+	G.Parent = RGBInput
+	G.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	G.BackgroundTransparency = 1.000
+	G.BorderSizePixel = 0
+	G.Position = UDim2.new(0.330000013, 0, 0, 0)
+	G.Size = UDim2.new(0.330000013, 0, 1, 0)
+
+	ColorName_2.Name = "ColorName"
+	ColorName_2.Parent = G
+	ColorName_2.AnchorPoint = Vector2.new(0, 0.5)
+	ColorName_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ColorName_2.BackgroundTransparency = 1.000
+	ColorName_2.BorderSizePixel = 0
+	ColorName_2.Position = UDim2.new(0, 0, 0.5, 0)
+	ColorName_2.Size = UDim2.new(0.25, 0, 0.800000012, 0)
+	ColorName_2.Font = Enum.Font.SourceSans
+	ColorName_2.Text = "G"
+	ColorName_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ColorName_2.TextScaled = true
+	ColorName_2.TextSize = 14.000
+	ColorName_2.TextWrapped = true
+
+	ValueBox_2.Name = "ValueBox"
+	ValueBox_2.Parent = G
+	ValueBox_2.AnchorPoint = Vector2.new(0, 0.5)
+	ValueBox_2.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
+	ValueBox_2.BorderSizePixel = 0
+	ValueBox_2.Position = UDim2.new(0.25, 0, 0.5, 0)
+	ValueBox_2.Size = UDim2.new(0.75, 0, 0.800000012, 0)
+	ValueBox_2.Font = Enum.Font.SourceSans
+	ValueBox_2.Text = "0"
+	ValueBox_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ValueBox_2.TextScaled = true
+	ValueBox_2.TextSize = 14.000
+	ValueBox_2.TextWrapped = true
+
+	UICorner_12.CornerRadius = UDim.new(0.5, 0)
+	UICorner_12.Parent = ValueBox_2
+
+	B.Name = "B"
+	B.Parent = RGBInput
+	B.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	B.BackgroundTransparency = 1.000
+	B.BorderSizePixel = 0
+	B.Position = UDim2.new(0.660000026, 0, 0, 0)
+	B.Size = UDim2.new(0.330000013, 0, 1, 0)
+
+	ColorName_3.Name = "ColorName"
+	ColorName_3.Parent = B
+	ColorName_3.AnchorPoint = Vector2.new(0, 0.5)
+	ColorName_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ColorName_3.BackgroundTransparency = 1.000
+	ColorName_3.BorderSizePixel = 0
+	ColorName_3.Position = UDim2.new(0, 0, 0.5, 0)
+	ColorName_3.Size = UDim2.new(0.25, 0, 0.800000012, 0)
+	ColorName_3.Font = Enum.Font.SourceSans
+	ColorName_3.Text = "B"
+	ColorName_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ColorName_3.TextScaled = true
+	ColorName_3.TextSize = 14.000
+	ColorName_3.TextWrapped = true
+
+	ValueBox_3.Name = "ValueBox"
+	ValueBox_3.Parent = B
+	ValueBox_3.AnchorPoint = Vector2.new(0, 0.5)
+	ValueBox_3.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
+	ValueBox_3.BorderSizePixel = 0
+	ValueBox_3.Position = UDim2.new(0.25, 0, 0.5, 0)
+	ValueBox_3.Size = UDim2.new(0.75, 0, 0.800000012, 0)
+	ValueBox_3.Font = Enum.Font.SourceSans
+	ValueBox_3.Text = "0"
+	ValueBox_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ValueBox_3.TextScaled = true
+	ValueBox_3.TextSize = 14.000
+	ValueBox_3.TextWrapped = true
+
+	UICorner_13.CornerRadius = UDim.new(0.5, 0)
+	UICorner_13.Parent = ValueBox_3
+
+	-- Module Scripts:
+
+	local fake_module_scripts = {}
+
+	do -- nil.GetOnGradientSlider
+		local script = Instance.new('ModuleScript', nil)
+		script.Name = "GetOnGradientSlider"
+		local function module_script()
+			-- dispeller 2020
+			-- Open Sourced Get On Gradient Slider module/function
+
+			function getColor(percentage, ColorKeyPoints)
+				if (percentage < 0) or (percentage>1) then
+					--error'getColor percentage out of bounds!'
+					warn'getColor got out of bounds percentage (less than 0 or greater than 1'
+				end
+
+				local closestToLeft = ColorKeyPoints[1]
+				local closestToRight = ColorKeyPoints[#ColorKeyPoints]
+				local LocalPercentage = .5
+				local color = closestToLeft.Value
+
+				-- This loop can probably be improved by doing something like a Binary search instead
+				-- This should work fine though
+				for i=1,#ColorKeyPoints-1 do
+					if (ColorKeyPoints[i].Time <= percentage) and (ColorKeyPoints[i+1].Time >= percentage) then
+						closestToLeft = ColorKeyPoints[i]
+						closestToRight = ColorKeyPoints[i+1]
+						LocalPercentage = (percentage-closestToLeft.Time)/(closestToRight.Time-closestToLeft.Time)
+						color = closestToLeft.Value:lerp(closestToRight.Value,LocalPercentage)
+						return color
+					end
+				end
+				warn('Color not found!')
+				return color
+			end
+
+			return getColor
+		end
+		fake_module_scripts[script] = module_script
+	end
+
+
+	-- Scripts:
+
+	local function JQMX_fake_script() -- Action.LocalScript 
+		local script = Instance.new('LocalScript', Action)
+		local req = require
+		local require = function(obj)
+			local fake = fake_module_scripts[obj]
+			if fake then
+				return fake()
+			end
+			return req(obj)
+		end
+
+		local showing = false
+
+		script.Parent.MouseButton1Down:Connect(function()
+			if showing == false then
+				showing = true 
+				script.Parent.Parent.ColorUI.Visible = showing
+			else
+				showing = false 
+				script.Parent.Parent.ColorUI.Visible = showing
+			end
+		end)
+	end
+	coroutine.wrap(JQMX_fake_script)()
+	local function ANTLAM_fake_script() -- ColorPickers.ColorPickerLocal 
+		local script = Instance.new('LocalScript', ColorPickers)
+		local req = require
+		local require = function(obj)
+			local fake = fake_module_scripts[obj]
+			if fake then
+				return fake()
+			end
+			return req(obj)
+		end
+
+		-- dispeller 2020, modified by Stonetr03, furtherly modified by LightningLion58
+		-- Color picker example
+
+		local Player = game.Players.LocalPlayer
+		local UserInputService = game:GetService('UserInputService')
+
+		local GUI = script.Parent
+
+
+		local selecting = false
+
+		-- load the getColor function
+		local getColor = require(script:WaitForChild("GetOnGradientSlider"))
+
+		-- upon the user selecting
+		function beginSelection(MainFrame, axis, frameToUpdate : Frame?, otherAxis)
+
+			local ColorShower = script.Parent.Parent.Parent.Color or frameToUpdate.ColorShower
+			local PickerArea = MainFrame.ColorPickerArea
+			local Picker = PickerArea.Picker
+			local Gradient = PickerArea:FindFirstChildOfClass('UIGradient')
+
+			selecting = true
+			local ColorKeyPoints = Gradient.Color.Keypoints
+
+			repeat task.wait()
+				-- left cord of ColorPickerArea in pixels
+				local minPos = PickerArea.AbsolutePosition[axis]
+
+				-- right cord of ColorPickerArea in pixels
+				local maxPos = minPos+PickerArea.AbsoluteSize[axis]
+
+				-- width of ColorPickerArea in pixels
+				local PixelSize = PickerArea.AbsoluteSize[axis]
+
+				-- raw Mouse X/Y pixel position
+				local mouse = UserInputService:GetMouseLocation()[axis] - (axis=="Y" and 36 or 0)
+
+				-- constraints
+				if mouse<minPos then
+					mouse = minPos
+				elseif mouse > maxPos then
+					mouse = maxPos
+				end
+
+				-- get percentage mouse is on
+				local Pos = (mouse-minPos)/PixelSize
+
+				-- move the visual Picker line
+				if(axis == "X") then
+					Picker.Position = UDim2.new(Pos,0,0,0)
+				elseif(axis == "Y") then
+					Picker.Position = UDim2.new(0,0,Pos,0)
+				else
+					warn("No such axis!")
+				end
+
+				-- set the ColorShower frame color
+				ColorShower.BackgroundColor3 = getColor(Pos,ColorKeyPoints)
+
+				if(frameToUpdate) then --If the current color change is supposed to influence a different frame:
+					local Area = frameToUpdate:WaitForChild("ColorPickerArea")
+					local Grad : UIGradient = Area:FindFirstChildOfClass('UIGradient')
+					local colors = Grad.Color.Keypoints
+					colors[2] = ColorSequenceKeypoint.new(colors[2].Time,ColorShower.BackgroundColor3)
+					Grad.Color = ColorSequence.new(colors) --Change the color pallete of the second frame
+
+					local color = getColor(Area:WaitForChild("Picker").Position[otherAxis].Scale,colors)
+					if(frameToUpdate:FindFirstChild("ColorShower")) then
+						frameToUpdate:WaitForChild("ColorShower").BackgroundColor3 = color --Update the color shower if its in the other frame
+					else
+						ColorShower.BackgroundColor3 = color --Update the color shower of this frame
+						
+						
+						pcall(function()
+							callback(color)
+						end)
+					end
+				end
+
+			until not selecting
+		end
+
+		-- upon the user ending selection
+		function endSelection()
+			-- this will stop the loop
+			selecting = false
+		end
+
+		-- check input for selection beginning
+
+		--Parameters for the following function:
+		-- frame - the color picker frame
+		-- axis - axis of color picking (axis of color picker)
+		-- frameToUpdate? - use if the change of 'frame' is supposed to influence a different gradient
+		-- otherAxis? - axis of 'frameToUpdate'
+
+		local function enableColorPicker(frame, axis : "Y" | "X" , frameToUpdate : Frame | nil, otherAxis : "Y"? | "X"?)
+
+			frame:WaitForChild("ColorPickerArea").InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+					beginSelection(frame, axis, frameToUpdate, otherAxis)
+				end
+			end)
+
+			frame:WaitForChild("ColorPickerArea").InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+					endSelection()
+				end
+			end)
+		end
+
+		enableColorPicker(GUI:WaitForChild("Horizontal"), "X", GUI:WaitForChild("Vertical"), "Y") --Enable the horizontal color picker, to influence the vertical one
+		enableColorPicker(GUI:WaitForChild("Vertical"), "Y") --Enable the vertical color picker, that does not influence any other color picker
+
+		--The following code will change the ColorShower's color when the RGB changes:
+		--Parameters for the following function:
+		-- ColorShower - the ColorShower/frame that you want to change on RGB input
+		-- RGBFrame - Frame including your RGB frames and their TextBox ValueBoxes 
+		-- together - Whether the color shower should update using all RGB inputs or only the one changed
+		-- onEnterPress - Whether should change color on FocusLost or when the text changes (any input)
+		-- toUpdateOnChange - Whether to update the RGB values when anything influences the 'ColorShower' Color. True by default
+		function RGBToColor(ColorShower : Frame, RGBFrame, together : boolean, onEnterPress : boolean, toUpdateOnChange : boolean?)
+			local function setColor(frame)
+				local color
+				if(together) then --If to change color using all RGB values
+					color = {}
+					for _, colorFrame in pairs(RGBFrame:GetChildren()) do
+						if(colorFrame:IsA("Frame")) then
+							color[colorFrame.Name] = tonumber(colorFrame:WaitForChild("ValueBox").Text) --Store all RGB values in the table
+						end
+					end	
+				else --To change only one aspect of the current color
+					local originalColor = ColorShower.BackgroundColor3
+					color = {
+						R = originalColor.R*255;
+						G = originalColor.G*255;
+						B = originalColor.B*255;
+					}
+					color[frame.Name] = tonumber(frame:WaitForChild("ValueBox").Text) --Change the one axis/aspect of the color
+				end
+
+				ColorShower.BackgroundColor3 = Color3.fromRGB(color.R, color.G, color.B) --Set the color
+			end
+
+			for _, colorFrame in pairs(RGBFrame:GetChildren()) do
+				if(colorFrame:IsA("Frame")) then
+					if(onEnterPress) then
+						colorFrame:WaitForChild("ValueBox").FocusLost:Connect(function()
+							setColor(colorFrame)
+						end)
+					else
+						colorFrame:WaitForChild("ValueBox"):GetPropertyChangedSignal("Text"):Connect(function()
+							setColor(colorFrame)
+						end)
+					end
+				end
+			end
+
+			if(toUpdateOnChange == true or toUpdateOnChange == nil) then
+				ColorShower:GetPropertyChangedSignal("BackgroundColor3"):Connect(function() --When the color shower changes, update the RGB values
+					RGBFrame:WaitForChild("R"):WaitForChild("ValueBox").Text = math.floor(ColorShower.BackgroundColor3.R*255)
+					RGBFrame:WaitForChild("G"):WaitForChild("ValueBox").Text = math.floor(ColorShower.BackgroundColor3.G*255)
+					RGBFrame:WaitForChild("B"):WaitForChild("ValueBox").Text = math.floor(ColorShower.BackgroundColor3.B*255)
+				end)
+			end
+		end
+
+		RGBToColor(GUI:WaitForChild("Vertical"):WaitForChild("ColorShower"), GUI:WaitForChild("RGBInput"), false, false)
+	end
+	coroutine.wrap(ANTLAM_fake_script)()
 
 end
 
