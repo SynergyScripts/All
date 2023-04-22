@@ -29,7 +29,6 @@ Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.136727616, 0, 0.0694779232, 0)
 Main.Size = UDim2.new(0.59, 0, 0.84, 0)
 Main.Draggable = true
-
 UICorner.CornerRadius = UDim.new(0, 4)
 UICorner.Parent = Main
 
