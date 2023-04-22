@@ -1,4 +1,4 @@
-local s = loadstring(game:HttpGet("https://raw.githubusercontent.com/SynergyScripts/All/main/Ui%20Library%20(0%20experience)", true))()----My ui library
+local s = loadstring(game:HttpGet("https://raw.githubusercontent.com/SynergyScripts/All/main/Ui%20Library/Ui%20Library", true))()----My ui library
 local e = s:MakeTitle("Prison Life")----Title Name
 
 
