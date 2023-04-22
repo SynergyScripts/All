@@ -796,7 +796,7 @@ function lib:MakeSlider(parent, name,color,  minvalue, maxvalue, callback)
 
 	Frame.Parent = SliderButton
 	Frame.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-	Frame.BorderColor3 = color
+	Frame.BorderSizePixel = 0
 	Frame.Position = UDim2.new(5.57752031e-08, 0, 0, 0)
 	Frame.Size = UDim2.new(0.00941797812, 0, 1.00000012, 0)
 	Frame.BackgroundColor3 = color
