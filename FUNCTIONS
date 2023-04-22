@@ -17,20 +17,16 @@ EEEEEEEEEE    SSSSSSSS    PP
 --]]
 
 -----------------PLAYERS ESP
-local lp = game.Players.LocalPlayer
-local char = lp.Character
-local hroot = char.HumanoidRootPart
-local humanoid = char.Humanoid
+local nameState = nil
+local studState = nil
+local hpState = nil
 local localPlayer = game.Players.LocalPlayer
 local CurrentCamera = workspace.CurrentCamera
 local worldToViewportPoint = CurrentCamera.worldToViewportPoint
 local HeadOff = Vector3.new(0, 0.5, 0)
 local camera = game:GetService("Workspace").CurrentCamera
-local name = nil
-local hp = nil
-local stud = nil
 
-local function esp_function(v)
+function esp_function(v)
     local text = Drawing.new("Text")
     local health = Drawing.new("Text")
     local studs = Drawing.new("Text")
@@ -79,9 +75,9 @@ local function esp_function(v)
                     text.Text = v.Name
                     studs.Text = "|" .. pos .. "|"
                     health.Text = "[" .. math.floor(v.Character.Humanoid.Health) .. "/" .. math.floor(v.Character.Humanoid.MaxHealth) .. "]"
-                    text.Visible = name
-                    studs.Visible = stud
-                    health.Visible = hp
+                    text.Visible = nameState
+                    studs.Visible = studState
+                    health.Visible = hpState
                 else
                     text.Visible = false
                     health.Visible = false
@@ -109,18 +105,6 @@ local function esp_function(v)
         end
     end)
 end
-
-for i, v in pairs(game.Players:GetPlayers()) do
-    if v ~= localPlayer then
-        esp_function(v)
-    end
-end
-
-    game.Players.PlayerAdded:Connect(function(player)
-    if player ~= localPlayer then
-    esp_function(player)
-    end
-    end)
 
 ---------STRUCTURE ESP
 
