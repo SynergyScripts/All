@@ -1,5 +1,5 @@
 local s = loadstring(game:HttpGet("https://raw.githubusercontent.com/SynergyScripts/All/main/Ui%20Library/Ui%20Library", true))()----My ui library
-local e = s:MakeTitle("Prison Life")----Title Name
+local e = s:MakeTitle("Prison Life")---Title Name
 
 
 local a = s:MakeTab("ESP")----Tab Name
