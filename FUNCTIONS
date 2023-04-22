@@ -282,11 +282,4 @@ end
             ]]--
 ----------------------------------------------------
 
-function bucle(code, wait, t, buc)
-buc = t
-while wait(wait) do
-if buc == true then
-code()
-end
-end
-end
+return
