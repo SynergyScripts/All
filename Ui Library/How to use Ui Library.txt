@@ -1,0 +1,45 @@
+local s = loadstring(game:HttpGet("https://raw.githubusercontent.com/SynergyScripts/All/main/Ui%20Library%20(0%20experience)", true))()----My ui library
+local e = s:MakeTitle("Prison Life")----Title Name
+
+
+local a = s:MakeTab("ESP")----Tab Name
+
+s:MakeSlider(a,---tab parent
+"Walkspeed",--Name
+Color3.fromRGB(255, 0, 0),---slider color
+10,---------min value
+100, ----- max value
+function(s)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+s:MakeButton(a,--tab parent
+"Hello World",----Name
+function()
+print("This is a button!")
+end)
+
+s:MakeToggle(a,---tab parent
+"Toggle",---Name
+function(bool)--function
+if bool == true then
+print("true")
+else
+print("false")
+end
+end)
+
+s:MakeBox(a,---tab parent
+"TextBox",---Name
+false,---clear on focus
+"Player Name",----place holder
+function(s)
+print(s)
+end)
+
+s:MakeDropdown(a,---tab parent
+"Dropdown",---Name
+{"Hello", "Hi"},------the contents
+function(s)
+print(s)
+end)
