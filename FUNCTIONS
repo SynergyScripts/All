@@ -26,6 +26,8 @@ local worldToViewportPoint = CurrentCamera.worldToViewportPoint
 local HeadOff = Vector3.new(0, 0.5, 0)
 local camera = game:GetService("Workspace").CurrentCamera
 local function esp_function(v, part)
+nameState = true
+
     local text = Drawing.new("Text")
     local health = Drawing.new("Text")
     local studs = Drawing.new("Text")
@@ -102,7 +104,6 @@ local function esp_function(v, part)
             playerRemovingConnection:Disconnect()
         end
     end)
-end
 
 --[[
 EXAMPLE
@@ -118,7 +119,7 @@ end
     esp_function(player, "Head")
     end
  end)
-]]--
+end
 ---------STRUCTURE ESP
 
 local nameState = nil
