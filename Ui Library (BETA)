@@ -1,4 +1,3 @@
-
 local Synergy = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -7,7 +6,6 @@ local UICorner_2 = Instance.new("UICorner")
 local Frame = Instance.new("Frame")
 local UICorner_3 = Instance.new("UICorner")
 local _ = Instance.new("TextButton")
-local UIListLayout = Instance.new("UIListLayout")
 local X = Instance.new("TextButton")
 local Frame_2 = Instance.new("Frame")
 local ItemsTab = Instance.new("ScrollingFrame")
@@ -42,14 +40,25 @@ Header.BorderSizePixel = 0
 Header.Position = UDim2.new(0.001, 0,-0.001, 0)
 Header.Size = UDim2.new(0.998, 0,0.073, 0)
 
+local es = Instance.new("UIStroke")
+
+
+es.Name = "UIStroke"
+es.Color = Color3.new(0,0,0)
+es.Parent = Frame
+es.ApplyStrokeMode = "Border"
+es.Thickness = 1
+es.Transparency = 0
+
+
 UICorner_2.CornerRadius = UDim.new(0, 4)
 UICorner_2.Parent = Header
 
 Frame.Parent = Header
 Frame.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
 Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.866023779, 0, 0.27116406, 0)
-Frame.Size = UDim2.new(0.117994905, 0, 0.58281976, 0)
+Frame.Position = UDim2.new(0.842, 0,0.224, 0)
+Frame.Size = UDim2.new(0.138, 0,0.674, 0)
 Frame.ZIndex = 2
 
 UICorner_3.CornerRadius = UDim.new(1, 0)
@@ -59,8 +68,8 @@ _.Name = "_"
 _.Parent = Frame
 _.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 _.BackgroundTransparency = 1.000
-_.Position = UDim2.new(0, 0, 0.222105607, 0)
-_.Size = UDim2.new(0.422522485, 0, 0.555788875, 0)
+_.Position = UDim2.new(0, 0,-0.35, 0)
+_.Size = UDim2.new(0.612, 0,1.279, 0)
 _.Font = "JosefinSans"
 _.Text = "_"
 _.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -68,17 +77,12 @@ _.TextScaled = true
 _.TextSize = 14.000
 _.TextWrapped = true
 
-UIListLayout.Parent = Frame
-UIListLayout.FillDirection = Enum.FillDirection.Horizontal
-UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
-
 X.Name = "X"
 X.Parent = Frame
 X.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 X.BackgroundTransparency = 1.000
-X.Position = UDim2.new(0.306691378, 0, 0.222105607, 0)
-X.Size = UDim2.new(0.643655121, 0, 0.555788875, 0)
+X.Position = UDim2.new(0.486, 0,0.158, 0)
+X.Size = UDim2.new(0.517, 0,0.797, 0)
 X.Font = "JosefinSans"
 X.Text = "X"
 X.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -103,7 +107,7 @@ ItemsTab.ScrollBarThickness = 0
 
 UIListLayout_2.Parent = ItemsTab
 UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
-UIListLayout_2.Padding = UDim.new(0, 2)
+UIListLayout_2.Padding = UDim.new(0, 4)
 
 
 
@@ -167,7 +171,7 @@ function lib:MakeTab(nametab)
 
 	UIListLayout.Parent = Frame1
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-	UIListLayout.Padding = UDim.new(0, 4)
+	UIListLayout.Padding = UDim.new(0, 6)
 
 	UIPadding.Parent = Frame1
 	UIPadding.PaddingLeft = UDim.new(0, 9)
@@ -185,6 +189,16 @@ function lib:MakeTab(nametab)
 	Button.Font = "JosefinSans"
 	Button.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Button.TextSize = 14.000
+
+	local e = Instance.new("UIStroke")
+
+
+	e.Name = "UIStroke"
+	e.Color = Color3.new(0,0,0)
+	e.Parent = Button
+	e.ApplyStrokeMode = "Border"
+	e.Thickness = 1
+	e.Transparency = 0
 
 	local UICorner_4 = Instance.new("UICorner")
 	UICorner_4.CornerRadius = UDim.new(0, 4)
@@ -214,9 +228,26 @@ function lib:CreateDropdown(parent, DropdownMainText, Contents, callback)
 	----------Dropdown List----------
 
 	local PageDropdownScrollingFrame = Instance.new("ScrollingFrame")
-	local DropdownScrollCorner = Instance.new("UICorner")
+	local s = Instance.new("UICorner")
+	local h = Instance.new("UICorner")
+
 	local DropdownScrollListLayout = Instance.new("UIListLayout")
 	local DropdownScrollPadding = Instance.new("UIPadding")
+	
+	s.Parent = PageDropdownScrollingFrame
+	s.CornerRadius = UDim.new(0, 4)
+	
+	h.Parent = PageDropdownScrollingFrame
+	h.CornerRadius = UDim.new(0, 4)
+	local e = Instance.new("UIStroke")
+
+
+	e.Name = "UIStroke"
+	e.Color = Color3.new(0,0,0)
+	e.Parent = PageDropdownFrame
+	e.ApplyStrokeMode = "Border"
+	e.Thickness = 1
+	e.Transparency = 0
 
 	----------Dropdown List----------
 
@@ -233,7 +264,7 @@ function lib:CreateDropdown(parent, DropdownMainText, Contents, callback)
 	DropdownText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	DropdownText.BackgroundTransparency = 1.000
 	DropdownText.BorderSizePixel = 0
-	DropdownText.Position = UDim2.new(0.0294117648, 0, 0.2, 0)
+	DropdownText.Position = UDim2.new(0.0294117648, 0, 0.23, 0)
 	DropdownText.Size = UDim2.new(0, 300, 0, 25)
 	DropdownText.Font = "JosefinSans"
 	DropdownText.Text = DropdownMainText
@@ -270,7 +301,7 @@ function lib:CreateDropdown(parent, DropdownMainText, Contents, callback)
 
 
 	----------Dropdown List----------
----PAGINA
+	---PAGINA
 	PageDropdownScrollingFrame.Name = "PageDropdownScrollingFrame"
 	PageDropdownScrollingFrame.Parent = parent
 	PageDropdownScrollingFrame.Active = false
@@ -281,10 +312,16 @@ function lib:CreateDropdown(parent, DropdownMainText, Contents, callback)
 	PageDropdownScrollingFrame.Size = UDim2.new(0.982, 0,0.153, 0)
 	PageDropdownScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 	PageDropdownScrollingFrame.ScrollBarThickness = 7
+	local m = Instance.new("UIStroke")
 
-	DropdownScrollCorner.CornerRadius = UDim.new(0, 5)
-	DropdownScrollCorner.Name = "DropdownScrollCorner"
-	DropdownScrollCorner.Parent = PageDropdownScrollingFrame
+
+	m.Name = "UIStroke"
+	m.Color = Color3.new(0,0,0)
+	m.Parent = PageDropdownScrollingFrame
+	m.ApplyStrokeMode = "Border"
+	m.Thickness = 1
+	m.Transparency = 0
+
 
 	DropdownScrollListLayout.Name = "DropdownScrollListLayout"
 	DropdownScrollListLayout.Parent = PageDropdownScrollingFrame
@@ -354,6 +391,8 @@ function lib:CreateDropdown(parent, DropdownMainText, Contents, callback)
 			end 
 		end
 	end
+
+	
 	DropdownMainButton.InputBegan:Connect(onInputBegan)
 
 
@@ -397,6 +436,7 @@ end
 function lib:MakeBox(parent, text, clearonfocus, placeholder, callback)
 	callback = callback or function() end
 	-- Gui to Lua
+	-- Gui to Lua
 	-- Version: 3.2
 
 	-- Instances:
@@ -404,12 +444,25 @@ function lib:MakeBox(parent, text, clearonfocus, placeholder, callback)
 	local Box = Instance.new("TextLabel")
 	local Name = Instance.new("TextLabel")
 	local UICorner = Instance.new("UICorner")
-	local TextBox = Instance.new("TextBox")
 	local UICorner_2 = Instance.new("UICorner")
+	local FakeBox = Instance.new("TextLabel")
 	local UICorner_3 = Instance.new("UICorner")
+	local TextBox = Instance.new("TextBox")
+	local UICorner_4 = Instance.new("UICorner")
+	local UICorner_5 = Instance.new("UICorner")
 
 	--Properties:
+	
+	local e = Instance.new("UIStroke")
 
+
+	e.Name = "UIStroke"
+	e.Color = Color3.new(0,0,0)
+	e.Parent = Box
+	e.ApplyStrokeMode = "Border"
+	e.Thickness = 1
+	e.Transparency = 0
+	
 	Box.Name = "Box"
 	Box.Parent = parent
 	Box.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
@@ -428,7 +481,7 @@ function lib:MakeBox(parent, text, clearonfocus, placeholder, callback)
 	Name.Position = UDim2.new(0.0210222341, 0, 0.288365632, 0)
 	Name.Size = UDim2.new(0.723798573, 0, 0.488365114, 0)
 	Name.Font = Enum.Font.JosefinSans
-	Name.Text = text
+	Name.Text = "HEE"
 	Name.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Name.TextScaled = true
 	Name.TextSize = 14.000
@@ -438,23 +491,46 @@ function lib:MakeBox(parent, text, clearonfocus, placeholder, callback)
 	UICorner.CornerRadius = UDim.new(0, 4)
 	UICorner.Parent = Name
 
-	TextBox.Parent = Box
+	UICorner_2.Parent = Box
+
+	FakeBox.Name = "FakeBox"
+	FakeBox.Parent = Box
+	FakeBox.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
+	FakeBox.BorderSizePixel = 0
+	FakeBox.Position = UDim2.new(0.782999992, 0, 0.209000006, 0)
+	FakeBox.Size = UDim2.new(0.180999994, 0, 0.617999971, 0)
+	FakeBox.Font = Enum.Font.JosefinSans
+	FakeBox.Text = ""
+	FakeBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+	FakeBox.TextScaled = true
+	FakeBox.TextSize = 14.000
+	FakeBox.TextWrapped = true
+
+	UICorner_3.CornerRadius = UDim.new(0, 4)
+	UICorner_3.Parent = FakeBox
+
+	TextBox.Parent = FakeBox
 	TextBox.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-	TextBox.Position = UDim2.new(0.782777965, 0, 0.208940476, 0)
-	TextBox.Size = UDim2.new(0.18069382, 0, 0.617880166, 0)
+	TextBox.Position = UDim2.new(0.104007214, 0, 0.208941206, 0)
+	TextBox.Size = UDim2.new(0.859464586, 0, 0.617880166, 0)
 	TextBox.Font = Enum.Font.JosefinSans
 	TextBox.Text = ""
 	TextBox.TextColor3 = Color3.fromRGB(235, 235, 235)
 	TextBox.TextScaled = true
 	TextBox.TextSize = 14.000
 	TextBox.TextWrapped = true
+	UICorner_5.CornerRadius = UDim.new(0, 4)
+	UICorner_5.Parent = FakeBox
+	
+	UICorner_4.CornerRadius = UDim.new(0, 4)
+	UICorner_4.Parent = TextBox
 	TextBox.ClearTextOnFocus = clearonfocus
 	TextBox.PlaceholderText = placeholder
-	
-	
+
+
 	TextBox.FocusLost:Connect(function()
-			callback(TextBox.Text)
-	
+		callback(TextBox.Text)
+
 	end)
 
 	UICorner_2.Parent = TextBox
@@ -473,59 +549,46 @@ function lib:MakeToggle(parent, text, callback)
 
 	local Toggle = Instance.new("TextButton")
 	local UICorner = Instance.new("UICorner")
-	local Color = Instance.new("TextLabel")
-	local UICorner_2 = Instance.new("UICorner")
-	local White = Instance.new("TextLabel")
-	local UICorner_3 = Instance.new("UICorner")
 	local Name = Instance.new("TextLabel")
+	local UICorner_2 = Instance.new("UICorner")
+	local Toggle2 = Instance.new("Frame")
+	local Color = Instance.new("TextLabel")
+	local UICorner_3 = Instance.new("UICorner")
+	local White = Instance.new("TextLabel")
 	local UICorner_4 = Instance.new("UICorner")
+	local a = Instance.new("UIStroke")
+	local e = Instance.new("UIStroke")
+
 
 	--Properties:
 
 	Toggle.Name = "Toggle"
 	Toggle.Parent = parent
 	Toggle.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-	Toggle.Position = UDim2.new(-0.617001772, 0, 0.0367214642, 0)
-	Toggle.Size = UDim2.new(0.98618257, 0, 0.0306607764, 0)
-	Toggle.Font = "JosefinSans"
+	Toggle.Position = UDim2.new(0.0153106041, 0, 0.496646464, 0)
+	Toggle.Size = UDim2.new(0.98618257, 0, 0.037157286, 0)
+	Toggle.Font = Enum.Font.JosefinSans
 	Toggle.Text = ""
 	Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Toggle.TextSize = 14.000
 	Toggle.TextXAlignment = Enum.TextXAlignment.Left
 
+	a.Name = "UIStroke"
+	a.Color = Color3.new(0,0,0)
+	a.Parent = Color
+	a.ApplyStrokeMode = "Border"
+	a.Thickness = 2
+	a.Transparency = 0
+
+
+	e.Name = "UIStroke"
+	e.Color = Color3.new(0,0,0)
+	e.Parent = Toggle
+	e.ApplyStrokeMode = "Border"
+	e.Thickness = 1
+	e.Transparency = 0
+
 	UICorner.Parent = Toggle
-
-	Color.Name = "Color"
-	Color.Parent = Toggle
-	Color.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-	Color.BorderSizePixel = 0
-	Color.Position = UDim2.new(0.881173074, 0, 0.288365632, 0)
-	Color.Size = UDim2.new(0.0773715675, 0, 0.488365114, 0)
-	Color.Font = Enum.Font.SourceSans
-	Color.Text = ""
-	Color.TextColor3 = Color3.fromRGB(52, 52, 52)
-	Color.TextScaled = true
-	Color.TextSize = 14.000
-	Color.TextWrapped = true
-
-	UICorner_2.CornerRadius = UDim.new(0, 4)
-	UICorner_2.Parent = Color
-
-	White.Name = "White"
-	White.Parent = Toggle
-	White.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	White.BorderSizePixel = 0
-	White.Position = UDim2.new(0.881173134, 0, 0.288365632, 0)
-	White.Size = UDim2.new(0.0248165186, 0, 0.488365114, 0)
-	White.Font = Enum.Font.SourceSans
-	White.Text = ""
-	White.TextColor3 = Color3.fromRGB(52, 52, 52)
-	White.TextScaled = true
-	White.TextSize = 14.000
-	White.TextWrapped = true
-
-	UICorner_3.CornerRadius = UDim.new(0, 4)
-	UICorner_3.Parent = White
 
 	Name.Name = "Name"
 	Name.Parent = Toggle
@@ -542,8 +605,47 @@ function lib:MakeToggle(parent, text, callback)
 	Name.TextWrapped = true
 	Name.TextXAlignment = Enum.TextXAlignment.Left
 
-	UICorner_4.CornerRadius = UDim.new(0, 4)
-	UICorner_4.Parent = Name
+	UICorner_2.CornerRadius = UDim.new(0, 4)
+	UICorner_2.Parent = Name
+
+	Toggle2.Name = "Toggle2"
+	Toggle2.Parent = Toggle
+	Toggle2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Toggle2.BackgroundTransparency = 1.000
+	Toggle2.Position = UDim2.new(0.879999995, 0, 0.0700000003, 0)
+	Toggle2.Size = UDim2.new(0.100000001, 0, 0.899999976, 0)
+
+	Color.Name = "Color"
+	Color.Parent = Toggle2
+	Color.BackgroundColor3 = Color3.fromRGB(167, 167, 167)
+	Color.BorderSizePixel = 0
+	Color.Position = UDim2.new(0.0490535833, 0, 0.134746298, 0)
+	Color.Size = UDim2.new(0.891975939, 0, 0.699591815, 0)
+	Color.Font = Enum.Font.SourceSans
+	Color.Text = ""
+	Color.TextColor3 = Color3.fromRGB(52, 52, 52)
+	Color.TextScaled = true
+	Color.TextSize = 14.000
+	Color.TextWrapped = true
+
+	UICorner_3.CornerRadius = UDim.new(1, 0)
+	UICorner_3.Parent = Color
+
+	White.Name = "White"
+	White.Parent = Color
+	White.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	White.BorderSizePixel = 0
+	White.Position = UDim2.new(0.1, 0,0.141, 0)
+	White.Size = UDim2.new(0.35, 0,0.644, 0)
+	White.Font = Enum.Font.SourceSans
+	White.Text = ""
+	White.TextColor3 = Color3.fromRGB(52, 52, 52)
+	White.TextScaled = true
+	White.TextSize = 14.000
+	White.TextWrapped = true
+
+	UICorner_4.CornerRadius = UDim.new(1, 0)
+	UICorner_4.Parent = White
 
 	local enabled = false
 
@@ -552,18 +654,18 @@ function lib:MakeToggle(parent, text, callback)
 		if enabled == false then
 			enabled = true
 
-			Color.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+			Color.BackgroundColor3 = Color3.fromRGB(0, 153, 167)
 			local newProperties = {
-				Position = UDim2.new(0.934, 0, 0.288, 0)
+				Position = UDim2.new(0.6, 0,0.141, 0)
 			}
 			local tween = game:GetService("TweenService"):Create(White, tweenInfo, newProperties)
 			tween:Play()
 			pcall(callback, true)
 		else
 			enabled = false
-			Color.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+			Color.BackgroundColor3 = Color3.fromRGB(167, 167, 167)
 			local newProperties = {
-				Position = UDim2.new(0.881, 0,0.288, 0)
+				Position = UDim2.new(0.1, 0,0.141, 0)
 			}
 			local tween = game:GetService("TweenService"):Create(White, tweenInfo, newProperties)
 			tween:Play()
@@ -578,24 +680,32 @@ function lib:MakeButton(parent, name, callback)
 	callback = callback or function() end
 	local Button2 = Instance.new("TextButton")
 	local UICorner = Instance.new("UICorner")
+	local e = Instance.new("UIStroke")
+
+	e.Name = "UIStroke"
+	e.Color = Color3.new(0,0,0)
+	e.Parent = Button2
+	e.ApplyStrokeMode = "Border"
+	e.Thickness = 1
+	e.Transparency = 0
 
 	UICorner.Parent = Button2
 	Button2.Name = name
 	Button2.Parent = parent
 	Button2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 	Button2.Position = UDim2.new(0.0153106041, 0, 0.0205623731, 0)
-	Button2.Size = UDim2.new(0.98618257, 0, 0.0306607764, 0)
+	Button2.Size = UDim2.new(0.986, 0,0.036, 0)
 	Button2.Font = "JosefinSans"
 	Button2.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Button2.TextSize = 14.000
 	Button2.Text = name
-	
+
 	Button2.MouseButton1Down:Connect(function()
 		callback()
 	end)
 end
 
-function lib:MakeSlider(parent, name, minvalue, maxvalue, callback)
+function lib:MakeSlider(parent, name,color,  minvalue, maxvalue, callback)
 	-- Gui to Lua
 	-- Version: 3.2
 
@@ -603,12 +713,8 @@ function lib:MakeSlider(parent, name, minvalue, maxvalue, callback)
 
 	local Slider = Instance.new("Frame")
 	local SliderValue = Instance.new("TextLabel")
-	local UICorner = Instance.new("UICorner")
-	local UICorner_2 = Instance.new("UICorner")
 	local SliderText = Instance.new("TextLabel")
 	local UICorner_3 = Instance.new("UICorner")
-	local SliderButton = Instance.new("TextButton")
-	local Frame = Instance.new("Frame")
 
 	--Properties:
 
@@ -655,6 +761,26 @@ function lib:MakeSlider(parent, name, minvalue, maxvalue, callback)
 	UICorner_3.CornerRadius = UDim.new(0, 4)
 	UICorner_3.Parent = SliderText
 
+
+
+
+
+
+
+
+
+	-- Gui to Lua
+	-- Version: 3.2
+
+	-- Instances:
+
+	local SliderButton = Instance.new("TextButton")
+	local UICorner = Instance.new("UICorner")
+	local Frame = Instance.new("Frame")
+	local UICorner_2 = Instance.new("UICorner")
+
+	--Properties:
+
 	SliderButton.Name = "SliderButton"
 	SliderButton.Parent = Slider
 	SliderButton.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
@@ -666,12 +792,44 @@ function lib:MakeSlider(parent, name, minvalue, maxvalue, callback)
 	SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 	SliderButton.TextSize = 14.000
 
+	UICorner.Parent = SliderButton
+
 	Frame.Parent = SliderButton
-	Frame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-	Frame.BorderColor3 = Color3.fromRGB(255, 0, 0)
+	Frame.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	Frame.BorderColor3 = color
 	Frame.Position = UDim2.new(5.57752031e-08, 0, 0, 0)
-	Frame.Size = UDim2.new(0.00261474168, 0, 1.04020512, 0)
-	
+	Frame.Size = UDim2.new(0.00941797812, 0, 1.00000012, 0)
+
+	local h = Instance.new("UICorner")
+	h.CornerRadius = UDim.new(0, 8)
+	h.Parent = SliderButton
+
+	local p = Instance.new("UICorner")
+	p.CornerRadius = UDim.new(0, 8)
+	p.Parent = Frame
+	local e = Instance.new("UIStroke")
+
+
+	e.Name = "UIStroke"
+	e.Color = Color3.new(0,0,0)
+	e.Parent = Slider
+	e.ApplyStrokeMode = "Border"
+	e.Thickness = 1
+	e.Transparency = 0
+
+	local i = Instance.new("UIStroke")
+
+
+	i.Name = "UIStroke"
+	i.Color = Color3.fromRGB(150, 150, 150)
+	i.Parent = SliderButton
+	i.ApplyStrokeMode = "Border"
+	i.Thickness = 2
+	i.Transparency = 0
+
+	UICorner_2.Parent = Frame
+
+
 	minvalue = minvalue or 0
 	maxvalue = maxvalue or 100
 
@@ -687,33 +845,31 @@ function lib:MakeSlider(parent, name, minvalue, maxvalue, callback)
 
 
 
-	
+
 	SliderButton.MouseButton1Down:Connect(function()
-		Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 547) * Frame.AbsoluteSize.X) + tonumber(minvalue)) or 0
+		Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 549) * Frame.AbsoluteSize.X) + tonumber(minvalue)) or 0
 		pcall(function()
 			callback(Value)
 		end)
-		Frame.Size = UDim2.new(0, math.clamp(mouse.X - Frame.AbsolutePosition.X, 0, 547), 0, 8)
+		Frame.Size = UDim2.new(0, math.clamp(mouse.X - Frame.AbsolutePosition.X, 0, 549), 0, 9)
 		moveconnection = mouse.Move:Connect(function()
 			SliderValue.Text = Value
-			Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 547) * Frame.AbsoluteSize.X) + tonumber(minvalue))
+			Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 549) * Frame.AbsoluteSize.X) + tonumber(minvalue))
 			pcall(function()
 				callback(Value)
 			end)
-			Frame.Size = UDim2.new(0, math.clamp(mouse.X - Frame.AbsolutePosition.X, 0, 547), 0, 8)
+			Frame.Size = UDim2.new(0, math.clamp(mouse.X - Frame.AbsolutePosition.X, 0, 549), 0, 9)
 		end)
 		releaseconnection = uis.InputEnded:Connect(function(Mouse)
 			if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-				Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 547) * Frame.AbsoluteSize.X) + tonumber(minvalue))
+				Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 549) * Frame.AbsoluteSize.X) + tonumber(minvalue))
 				pcall(function()
 					callback(Value)
 				end)
-				Frame.Size = UDim2.new(0, math.clamp(mouse.X - Frame.AbsolutePosition.X, 0, 547), 0, 8)
+				Frame.Size = UDim2.new(0, math.clamp(mouse.X - Frame.AbsolutePosition.X, 0, 549), 0, 9)
 				moveconnection:Disconnect()
 				releaseconnection:Disconnect()
 			end
 		end)
 	end)
 end
-
-return lib
