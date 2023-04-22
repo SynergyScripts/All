@@ -105,8 +105,7 @@ nameState = true
         end
     end)
 
---[[
-EXAMPLE
+
 for i, v in pairs(game.Players:GetPlayers()) do
     if v ~= localPlayer then
         esp_function(v, "Head")
