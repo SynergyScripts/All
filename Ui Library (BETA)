@@ -1,3 +1,5 @@
+
+_G.DefaultColor = Color3.fromRGB(0, 255, 0)
 local Synergy = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
