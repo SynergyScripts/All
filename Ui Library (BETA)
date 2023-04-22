@@ -215,7 +215,7 @@ function lib:MakeTab(nametab)
 end
 
 
-function lib:CreateDropdown(parent, DropdownMainText, Contents, callback)
+function lib:MakeDropdown(parent, DropdownMainText, Contents, callback)
 	DropdownMainText = DropdownMainText or "Dropdown Text"
 	callback = callback or function() end	
 
