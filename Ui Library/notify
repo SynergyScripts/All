@@ -1,5 +1,11 @@
 function notify(name, info, espera)
 
+for i, v in pairs(game.CoreGui:GetChildren()) do
+if v.Name == "Notification" then
+v:Destroy()
+end
+end
+
 	local Notification = Instance.new("ScreenGui")
 	local Main = Instance.new("Frame")
 	local Text = Instance.new("Frame")
