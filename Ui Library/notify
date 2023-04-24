@@ -1,110 +1,111 @@
 function notify(name, info, espera)
 
-local Notification = Instance.new("ScreenGui")
-local Main = Instance.new("Frame")
-local Text = Instance.new("Frame")
-local Name = Instance.new("TextLabel")
-local Info = Instance.new("TextLabel")
+	local Notification = Instance.new("ScreenGui")
+	local Main = Instance.new("Frame")
+	local Text = Instance.new("Frame")
+	local Name = Instance.new("TextLabel")
+	local Info = Instance.new("TextLabel")
 
 
-Notification.Name = "Notification"
-Notification.Parent = game.CoreGui
-Notification.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	Notification.Name = "Notification"
+	Notification.Parent = game.CoreGui
+	Notification.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-Main.Name = "Main"
-Main.Parent = Notification
-Main.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
-Main.BorderSizePixel = 0
-Main.Position = UDim2.new(0.648000002, 0, -1, 0)
-Main.Size = UDim2.new(0.164956018, 0, 0.209204704, 0)
+	Main.Name = "Main"
+	Main.Parent = Notification
+	Main.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+	Main.BorderSizePixel = 0
+	Main.Position = UDim2.new(0.648000002, 0, -1, 0)
+	Main.Size = UDim2.new(0.164956018, 0, 0.209204704, 0)
 
-Text.Name = "Text"
-Text.Parent = Main
-Text.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-Text.BorderColor3 = Color3.fromRGB(27, 42, 53)
-Text.BorderSizePixel = 0
-Text.Position = UDim2.new(0, 0, 0.81099999, 0)
-Text.Size = UDim2.new(1, 0, 0.188461706, 0)
+	Text.Name = "Text"
+	Text.Parent = Main
+	Text.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
+	Text.BorderColor3 = Color3.fromRGB(27, 42, 53)
+	Text.BorderSizePixel = 0
+	Text.Position = UDim2.new(0, 0, 0.81099999, 0)
+	Text.Size = UDim2.new(1, 0, 0.188461706, 0)
 
-Name.Name = "Name"
-Name.Parent = Text
-Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Name.BackgroundTransparency = 1.000
-Name.Position = UDim2.new(0.0311111137, 0, 0.24489744, 0)
-Name.Size = UDim2.new(0.946666718, 0, 0.448979199, 0)
-Name.Font = "JosefinSans"
-Name.Text = name
-Name.TextColor3 = Color3.fromRGB(255, 255, 255)
-Name.TextScaled = true
-Name.TextSize = 14.000
-Name.TextWrapped = true
+	Name.Name = "Name"
+	Name.Parent = Text
+	Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Name.BackgroundTransparency = 1.000
+	Name.Position = UDim2.new(0.0311111137, 0, 0.24489744, 0)
+	Name.Size = UDim2.new(0.946666718, 0, 0.448979199, 0)
+	Name.Font = "JosefinSans"
+	Name.Text = name
+	Name.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Name.TextScaled = true
+	Name.TextSize = 14.000
+	Name.TextWrapped = true
 
-Info.Name = "Info"
-Info.Parent = Main
-Info.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Info.BackgroundTransparency = 1.000
-Info.BorderColor3 = Color3.fromRGB(27, 42, 53)
-Info.Position = UDim2.new(0.0533333384, 0, 0.0692307726, 0)
-Info.Size = UDim2.new(0.888888955, 0, 0.69230777, 0)
-Info.Font = Enum.Font.SourceSans
-Info.Text = info
-Info.TextColor3 = Color3.fromRGB(255, 255, 255)
-Info.TextSize = 14.000
-Info.TextWrapped = true
+	Info.Name = "Info"
+	Info.Parent = Main
+	Info.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Info.BackgroundTransparency = 1.000
+	Info.BorderColor3 = Color3.fromRGB(27, 42, 53)
+	Info.Position = UDim2.new(0.0533333384, 0, 0.0692307726, 0)
+	Info.Size = UDim2.new(0.888888955, 0, 0.69230777, 0)
+	Info.Font = Enum.Font.SourceSans
+	Info.Text = info
+	Info.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Info.TextSize = 14.000
+	Info.TextWrapped = true
 
--- Scripts:
+	-- Scripts:
 
-local function HSFY_fake_script() -- Main.LocalScript 
-	local script = Instance.new('LocalScript', Main)
+	local function HSFY_fake_script() -- Main.LocalScript 
+		local script = Instance.new('LocalScript', Main)
 
-	
-	
-	local TweenService = game:GetService("TweenService")
-	local frame = script.Parent
-	
-	local startPos = frame.Position
-	local endPos = UDim2.new(0.648, 0, 0, -35.5)
-	
-	local tweenInfo = TweenInfo.new(
-		3,
-		Enum.EasingStyle.Quad,
-		Enum.EasingDirection.InOut
-	)
-	
-	local tween = TweenService:Create(
-		frame,
-		tweenInfo,
-		{Position = endPos}
-	)
-	
-	-- Conectamos el evento Completed del primer tween
-	tween.Completed:Connect(function()
-		wait(espera)
-		-- Creamos el segundo tween
-		local startPos2 = frame.Position
-		local endPos2 = UDim2.new(0.648, 0, -1, 0)
-		local tweenInfo2 = TweenInfo.new(
+
+
+		local TweenService = game:GetService("TweenService")
+		local frame = script.Parent
+
+		local startPos = frame.Position
+		local endPos = UDim2.new(0.648, 0, 0, -35.5)
+
+		local tweenInfo = TweenInfo.new(
 			3,
 			Enum.EasingStyle.Quad,
 			Enum.EasingDirection.InOut
 		)
-		local tween2 = TweenService:Create(
-			frame,
-			tweenInfo2,
-			{Position = endPos2}
-		)
-		tween2:Play()
-	end)
-	
-	tween:Play()
-	
-end
 
-	tween2.Completed:Connect(function()
-		Notification:Destroy()
-end)
-coroutine.wrap(HSFY_fake_script)()
+		local tween = TweenService:Create(
+			frame,
+			tweenInfo,
+			{Position = endPos}
+		)
+
+		-- Conectamos el evento Completed del primer tween
+		tween.Completed:Connect(function()
+			wait(espera)
+			-- Creamos el segundo tween
+			local startPos2 = frame.Position
+			local endPos2 = UDim2.new(0.648, 0, -1, 0)
+			local tweenInfo2 = TweenInfo.new(
+				3,
+				Enum.EasingStyle.Quad,
+				Enum.EasingDirection.InOut
+			)
+			local tween2 = TweenService:Create(
+				frame,
+				tweenInfo2,
+				{Position = endPos2}
+			)
+			tween2:Play()
+			tween2.Completed:Connect(function()
+				Notification:Destroy()
+			end)
+		end)
+
+		tween:Play()
+
+	end
+
+
+	coroutine.wrap(HSFY_fake_script)()
 end
 
 return
---notify("Notify test", "Notify", 5)--example
+	--notify("Notify test", "Notify", 5)--example
