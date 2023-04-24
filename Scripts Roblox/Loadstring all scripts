@@ -1,0 +1,3 @@
+if game.PlaceId == 11729688377 then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SynergyScripts/All/main/Scripts%20Roblox/Booga%20Booga%20Reborn.txt", true))()
+end
