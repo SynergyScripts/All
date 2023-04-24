@@ -94,14 +94,15 @@ local function HSFY_fake_script() -- Main.LocalScript
 			{Position = endPos2}
 		)
 		tween2:Play()
-	tween2.Completed:Connect(function()
-		Notification:Destroy()
-end)
 	end)
 	
 	tween:Play()
 	
 end
+
+	tween2.Completed:Connect(function()
+		Notification:Destroy()
+end)
 coroutine.wrap(HSFY_fake_script)()
 end
 
