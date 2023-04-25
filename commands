@@ -38,29 +38,6 @@ LocalPlayer.Chatted:Connect(function(msg)
             print(var)
         end
 
-getgenv().aura = false
-        if cmd == "aura" then
-aura = true
-while aura == true and wait() do
-for i, v in pairs(game.Players:GetPlayers()) do
-if v~= game.Players.LocalPlayer then
-if (v.Character.Head.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude < 60 then
-local args = {
-    [1] = v
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("meleeEvent"):FireServer(unpack(args))
-end    
-end
-  end
-   end
-end
-
-
-        if cmd == "unaura" then
-aura = false
-        end
-
         if cmd == "reset" then
 LocalPlayer.Character:BreakJoints()
         end
