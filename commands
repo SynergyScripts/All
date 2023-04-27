@@ -1,7 +1,4 @@
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SynergyScripts/All/main/Ui%20Library/notify", true))()
 
 local Commands = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
@@ -144,46 +141,74 @@ Gui.Text = "Gui"
 Gui.TextColor3 = Color3.fromRGB(255, 255, 255)
 Gui.TextSize = 14.000
 
+
+----------------------------Animation Tween Open Gui and Close Gui
+local anim = nil
+
+
+
+
+local main = Main
+
+local TweenService = game:GetService("TweenService")
+
+local part = main
+local startPosition = UDim2.new(1, -283, 1, -25)
+local endPosition = UDim2.new(1, -283, 1, -250)
+local tweenInfo = TweenInfo.new(
+	0.1,
+	Enum.EasingStyle.Quad,
+	Enum.EasingDirection.Out
+)
+
+local tween = TweenService:Create(part, tweenInfo, {
+	Position = endPosition,
+})
+
+
+local tween2 = TweenService:Create(part, tweenInfo, {
+	Position = startPosition,
+})
+
+main.MouseEnter:Connect(function()
+	anim = true
+end)
+
+main.MouseLeave:Connect(function()
+	wait(2)
+	anim = false
+end)
+
+
+-----------------------------------------------------------
+
 local prefix = ":"
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
+local PlaceId = game.PlaceId
+local speaker = LocalPlayer
 
+
+
+local HumanModCons = {}
 local commands = {}
 
-local function AddCommand(name, func)
-	commands[name] = func
 
-	local TextButton = Instance.new("TextButton")
-
-	TextButton.Parent = ScrollingFrame
-	TextButton.BackgroundColor3 = Color3.fromRGB(20, 22, 25)
-	TextButton.BorderColor3 = Color3.fromRGB(13, 20, 25)
-	TextButton.Size = UDim2.new(1, 0, 0.100000001, 0)
-	TextButton.Font = Enum.Font.SourceSans
-	TextButton.Text = ""
-	TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextButton.TextSize = 14.000
-
-	local TextLabel = Instance.new("TextLabel")
-
-	TextLabel.Parent = TextButton
-	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel.BackgroundTransparency = 1.000
-	TextLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
-	TextLabel.Position = UDim2.new(0.0355871879, 0, 0.134407237, 0)
-	TextLabel.Size = UDim2.new(0.939501762, 0, 0.727239549, 0)
-	TextLabel.Font = Enum.Font.SourceSans
-	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel.TextSize = 14.000
-	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-	TextLabel.Text = name
+function isNumber(str)
+	if tonumber(str) ~= nil or str == 'inf' then
+		return true
+	end
 end
 
 game:GetService("UserInputService").InputBegan:Connect(function(input, processed)
 	if input.KeyCode == Enum.KeyCode.X and not processed then
+		anim = true
 		ComandBar.Visible = true
 		ComandBar:CaptureFocus()
 		processed = true
+		wait(1)
+		ComandBar.Text = ""
+
 	end
 end)
 
@@ -229,6 +254,7 @@ ComandBar.FocusLost:Connect(function(enterPressed)
 	if enterPressed then
 		local input = ComandBar.Text:lower()
 		ExecuteCommand(input)
+		anim = false
 	end
 end)
 
@@ -261,6 +287,55 @@ ComandBar.FocusLost:Connect(function(enterPressed)
 	end
 end)
 
+local function AddCommand(name, func)
+	commands[name] = func
+
+	local TextButton = Instance.new("TextButton")
+
+	TextButton.Parent = ScrollingFrame
+	TextButton.BackgroundColor3 = Color3.fromRGB(20, 22, 25)
+	TextButton.BorderColor3 = Color3.fromRGB(13, 20, 25)
+	TextButton.Size = UDim2.new(1, 0, 0.100000001, 0)
+	TextButton.Font = Enum.Font.SourceSans
+	TextButton.Text = ""
+	TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextButton.TextSize = 14.000
+
+	local TextLabel = Instance.new("TextLabel")
+
+	TextLabel.Parent = TextButton
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+	TextLabel.Position = UDim2.new(0.0355871879, 0, 0.134407237, 0)
+	TextLabel.Size = UDim2.new(0.939501762, 0, 0.727239549, 0)
+	TextLabel.Font = Enum.Font.SourceSans
+	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.TextSize = 14.000
+	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+	TextLabel.Text = name
+
+	local function buttonscript() -- Circle.LocalScript 
+		local script = Instance.new('LocalScript', TextButton)
+
+		TextButton.MouseButton1Down:Connect(function()
+			local codename = TextLabel.Text
+
+
+				ComandBar.Text = codename
+				ComandBar.Visible = true
+				local input = ComandBar.Text:lower()
+
+				ExecuteCommand(input)
+		
+
+		end)
+
+	end
+	coroutine.wrap(buttonscript)()
+
+end
+
 
 
 AddCommand("print", function(var)
@@ -275,6 +350,7 @@ local clone = nil
 
 
 AddCommand("invisible", function()
+	if LocalPlayer.Character.Humanoid.RigType == "R6" then
 	for i, l in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
 		if l.Name ~= "HumanoidRootPart" and l:IsA("Part") then
 			l.Transparency = 0.5
@@ -289,6 +365,10 @@ AddCommand("invisible", function()
 		if v:IsA("Seat") or v:IsA("SeatPart") then
 			v.Disabled = true
 		end
+		end
+	else
+		notify("Rig Type Error", "This require R6 Rig Type", 5)
+		
 	end
 end)
 
@@ -309,7 +389,35 @@ AddCommand("uninvisible" or "uninvis", function()
 		if v:IsA("Seat") or v:IsA("SeatPart") then
 			v.Disabled = false
 		end
+	end
+end)
+
+AddCommand("loopspeed", function(var)
+	local speed = var or 16
+	if var then
+		speed = var or 16
+	end
+	if isNumber(speed) then
+		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
+		local Human = Char and Char:FindFirstChildWhichIsA("Humanoid")
+		local function WalkSpeedChange()
+			if Char and Human then
+				Human.WalkSpeed = speed
+			end
 		end
+		WalkSpeedChange()
+		HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
+		HumanModCons.wsCA = (HumanModCons.wsCA and HumanModCons.wsCA:Disconnect() and false) or speaker.CharacterAdded:Connect(function(nChar)
+			Char, Human = nChar, nChar:WaitForChild("Humanoid")
+			WalkSpeedChange()
+			HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) or Human:GetPropertyChangedSignal("WalkSpeed"):Connect(WalkSpeedChange)
+		end)
+	end
+end)
+
+AddCommand("unloopspeed", function()
+	HumanModCons.wsLoop = (HumanModCons.wsLoop and HumanModCons.wsLoop:Disconnect() and false) or nil
+	HumanModCons.wsCA = (HumanModCons.wsCA and HumanModCons.wsCA:Disconnect() and false) or nil
 end)
 
 AddCommand("tp", function(var)
@@ -320,6 +428,154 @@ AddCommand("tp", function(var)
 end)
 
 
+local swimming = false
+local oldgrav = workspace.Gravity
+local swimbeat = nil
+AddCommand("swim", function()
+	if not swimming and speaker and speaker.Character and speaker.Character:FindFirstChildWhichIsA("Humanoid") then
+		oldgrav = workspace.Gravity
+		workspace.Gravity = 0
+		local swimDied = function()
+			workspace.Gravity = oldgrav
+			swimming = false
+		end
+		local Humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
+		gravReset = Humanoid.Died:Connect(swimDied)
+		local enums = Enum.HumanoidStateType:GetEnumItems()
+		table.remove(enums, table.find(enums, Enum.HumanoidStateType.None))
+		for i, v in pairs(enums) do
+			Humanoid:SetStateEnabled(v, false)
+		end
+		Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+		swimbeat = RunService.Heartbeat:Connect(function()
+			pcall(function()
+				speaker.Character.HumanoidRootPart.Velocity = ((Humanoid.MoveDirection ~= Vector3.new() or UserInputService:IsKeyDown(Enum.KeyCode.Space)) and speaker.Character.HumanoidRootPart.Velocity or Vector3.new())
+			end)
+		end)
+		swimming = true
+	end
+end)
+
+AddCommand("unswim", function(var)
+	if speaker and speaker.Character and speaker.Character:FindFirstChildWhichIsA("Humanoid") then
+		workspace.Gravity = oldgrav
+		swimming = false
+		if gravReset then
+			gravReset:Disconnect()
+		end
+		if swimbeat ~= nil then
+			swimbeat:Disconnect()
+			swimbeat = nil
+		end
+		local Humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
+		local enums = Enum.HumanoidStateType:GetEnumItems()
+		table.remove(enums, table.find(enums, Enum.HumanoidStateType.None))
+		for i, v in pairs(enums) do
+			Humanoid:SetStateEnabled(v, true)
+		end
+	end
+end)
+
+
+AddCommand("rejoin", function(var)
+	game:GetService("TeleportService"):Teleport(PlaceId, LocalPlayer)
+end)
+
+AddCommand("serverhop", function(var)
+	local ag = PlaceId
+	local ah = {}
+	local ai = ""
+	local aj = os.date("!*t").hour
+	local ak = false
+	local al =
+		pcall(
+			function()
+				ah = game:GetService("HttpService"):JSONDecode(readfile("NotSameServers.json"))
+			end
+		)
+	if not al then
+		table.insert(ah, aj)
+		writefile("NotSameServers.json", game:GetService("HttpService"):JSONEncode(ah))
+	end
+	function TPReturner()
+		local am
+		if ai == "" then
+			am =
+				game.HttpService:JSONDecode(
+					game:HttpGet(
+						"https://games.roblox.com/v1/games/" .. ag .. "/servers/Public?sortOrder=Asc&limit=100"
+					)
+				)
+		else
+			am =
+				game.HttpService:JSONDecode(
+					game:HttpGet(
+						"https://games.roblox.com/v1/games/" ..
+						ag .. "/servers/Public?sortOrder=Asc&limit=100&cursor=" .. ai
+					)
+				)
+		end
+		local an = ""
+		if am.nextPageCursor and am.nextPageCursor ~= "null" and am.nextPageCursor ~= nil then
+			ai = am.nextPageCursor
+		end
+		local ao = 0
+		for b, c in pairs(am.data) do
+			local ap = true
+			an = tostring(c.id)
+			if tonumber(c.maxPlayers) > tonumber(c.playing) then
+				for aq, ar in pairs(ah) do
+					if ao ~= 0 then
+						if an == tostring(ar) then
+							ap = false
+						end
+					else
+						if tonumber(aj) ~= tonumber(ar) then
+							local as =
+								pcall(
+									function()
+										delfile("NotSameServers.json")
+										ah = {}
+										table.insert(ah, aj)
+									end
+								)
+						end
+					end
+					ao = ao + 1
+				end
+				if ap == true then
+					table.insert(ah, an)
+					wait()
+					pcall(
+						function()
+							writefile("NotSameServers.json", game:GetService("HttpService"):JSONEncode(ah))
+							wait()
+							game:GetService("TeleportService"):TeleportToPlaceInstance(
+							ag,
+							an,
+							game.Players.LocalPlayer
+							)
+						end
+					)
+					wait(4)
+				end
+			end
+		end
+	end
+	function Teleport()
+		while wait() do
+			pcall(
+				function()
+					TPReturner()
+					if ai ~= "" then
+						TPReturner()
+					end
+				end
+			)
+		end
+	end
+	Teleport()
+end)
 
 -- Scripts:
 
@@ -328,7 +584,7 @@ local function NDAS_fake_script() -- Settings.LocalScript
 
 	local img = script.Parent
 	local circle = script.Parent.Parent.Circle
-	
+
 	img.MouseButton1Down:Connect(function()
 		Scroll.Visible = true
 		circle.Visible = true
@@ -341,7 +597,7 @@ local function QCYV_fake_script() -- Circle.LocalScript
 
 	local circle = script.Parent
 	local setting = script.Parent.Parent.Settings
-	
+
 	circle.MouseButton1Down:Connect(function()
 		Scroll.Visible = false
 		circle.Visible = false
@@ -349,38 +605,11 @@ local function QCYV_fake_script() -- Circle.LocalScript
 	end)
 end
 coroutine.wrap(QCYV_fake_script)()
-local function WUTQ_fake_script() -- Main.LocalScript 
-	local script = Instance.new('LocalScript', Main)
 
-	
-	local main = script.Parent
-	
-	local TweenService = game:GetService("TweenService")
-	
-	local part = main
-	local startPosition = UDim2.new(1, -283, 1, -25)
-	local endPosition = UDim2.new(1, -283, 1, -250)
-	local tweenInfo = TweenInfo.new(
-		0.1,
-		Enum.EasingStyle.Quad,
-		Enum.EasingDirection.Out
-	)
-	
-	local tween = TweenService:Create(part, tweenInfo, {
-		Position = endPosition,
-	})
-	
-	main.MouseEnter:Connect(function()
+while wait() do
+	if anim == true then
 		tween:Play()
-	end)
-	
-	main.MouseLeave:Connect(function()
-		wait(2)
-		local tween2 = TweenService:Create(part, tweenInfo, {
-			Position = startPosition,
-		})
+	elseif anim == false then
 		tween2:Play()
-	end)
-	
+	end
 end
-coroutine.wrap(WUTQ_fake_script)()
