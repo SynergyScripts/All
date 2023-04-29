@@ -1468,13 +1468,13 @@ local Slider = Heals:CreateSlider({
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().bloodfruit = t
-                while wait() do
-               
+    game:GetService('RunService').Heartbeat:connect(function()
                 if getgenv().bloodfruit == true then
 if humanoid.Health < getgenv().sliderheal then
     autoheal("Bloodfruit") 
-end end
 end
+end
+end)
              end,
           })
          
@@ -1487,15 +1487,15 @@ end
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().bluefruit1 = t
-                while wait() do
-               
+    game:GetService('RunService').Heartbeat:connect(function()
+
                     if getgenv().bluefruit1 == true then
                 if humanoid.Health < getgenv().sliderheal then
                     autoheal("Bluefruit")
             
             end
             end
-        end
+        end)
              end,
           })
          
@@ -1505,14 +1505,14 @@ end
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().lemon1 = t
-                while wait() do
-               
+    game:GetService('RunService').Heartbeat:connect(function()
+
                 if getgenv().lemon1 == true then
                 if humanoid.Health < getgenv().sliderheal then
                     autoheal("Lemon") 
                                end
             end
-    end
+    end)
              end,
           })
          
@@ -1522,13 +1522,13 @@ end
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().jelly1 = t
-                while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
                 if getgenv().jelly1 == true then
                 if humanoid.Health < getgenv().sliderheal then
                     autoheal("Jelly")                end
             
         end
-        end
+        end)
              end,
           })
          
@@ -1538,14 +1538,14 @@ end
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().strawberry1 = t
-                 while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
                 if getgenv().strawberry == true then
                 if humanoid.Health < getgenv().sliderheal then
                     autoheal("Strawberry")
                             
             end
         end
-    end
+    end)
              end,
           })
          
@@ -1557,7 +1557,7 @@ end
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().bloodfruit4 = t
-                while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
                
                 if getgenv().bloodfruit4 == true then
                 if humanoid.Health < getgenv().sliderheal then
@@ -1568,7 +1568,7 @@ end
                 end
        
             end
-        end
+        end)
              end,
           })
          
@@ -1578,7 +1578,7 @@ end
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().berry4 = t
-                while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
                
                 if getgenv().berry4 == true then
                 if humanoid.Health < getgenv().sliderheal then
@@ -1590,7 +1590,7 @@ end
                 end
             end
 
-            end
+            end)
              end,
           })
          
@@ -1600,7 +1600,7 @@ end
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().bluefruit4 = t
-                                while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
                
                 if getgenv().bluefruit4 == true then
@@ -1611,7 +1611,7 @@ end
                     autoheal("Bluefruit") 
                 end
             end
-                        end
+                        end)
              end,
           })
          
@@ -1621,7 +1621,7 @@ end
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().lemom4 = t
-                while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
                
                 if getgenv().lemon4 == true then
@@ -1632,7 +1632,7 @@ end
                     autoheal("Lemon") 
                 end
                         end
-        end
+        end)
              end,
           })
          
@@ -1642,7 +1642,7 @@ end
              Flag = "Toggle1",
              Callback = function(t)
                 getgenv().jelly4 = t
-                while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
                
                 if getgenv().jelly4 == true then
@@ -1654,7 +1654,7 @@ end
                 end
             end
   
-    end
+    end)
              end,
           })
          
@@ -1663,7 +1663,7 @@ end
              CurrentValue = false,
              Flag = "Toggle1",
              Callback = function(t)
-                while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
                 getgenv().strawberry4 = t
                
@@ -1675,7 +1675,7 @@ end
                     autoheal("Strawberry") 
                 end
             end
-        end
+        end)
              end,
           })
          
@@ -1687,7 +1687,7 @@ end
             Flag = "Toggle1",
             Callback = function(t)
             getgenv().bloodfruit5 = t
-            while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
            
             if getgenv().bloodfruit5 == true then
@@ -1698,7 +1698,7 @@ end
             end
         end
  
-        end
+        end)
             end,
             })
             
@@ -1708,7 +1708,7 @@ end
             Flag = "Toggle1",
             Callback = function(t)
             getgenv().berry5 = t
-            while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
            
             if getgenv().berry5 == true then
@@ -1719,7 +1719,7 @@ end
             end
 
     end
-        end
+        end)
             end,
             })
             
@@ -1729,7 +1729,7 @@ end
             Flag = "Toggle1",
             Callback = function(t)
             getgenv().bluefruit5 = t
-            while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
            
             if getgenv().bluefruit5 == true then
@@ -1740,7 +1740,7 @@ end
             end
         end
 
-        end
+        end)
             end,
             })
             
@@ -1750,7 +1750,7 @@ end
             Flag = "Toggle1",
             Callback = function(t)
             getgenv().lemon5 = t
-            while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
            
             if getgenv().lemon5 == true then
@@ -1761,7 +1761,7 @@ end
             end
  
             end
-        end
+        end)
             end,
             })
             
@@ -1771,7 +1771,7 @@ end
             Flag = "Toggle1",
             Callback = function(t)
             getgenv().jelly5 = t
-            while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
            
             if getgenv().jelly5 == true then
@@ -1782,7 +1782,7 @@ end
             end
         end
      
-        end
+        end)
             end,
             })
 
@@ -1792,7 +1792,7 @@ end
                 Flag = "Toggle1",
                 Callback = function(t)
                 getgenv().strawberry5 = t
-                while wait() do
+    game:GetService('RunService').Heartbeat:connect(function()
 
                
                 if getgenv().strawberry5 == true then
@@ -1802,7 +1802,7 @@ end
                 end
                 end
             end
-                end
+                end)
          
                 end,
                 })
@@ -1832,7 +1832,9 @@ end
              Callback = function(t)
                  getgenv().myautoheal = t
                  spawn(function()
-                     while getgenv().myautoheal == true and wait() do
+                     game:GetService('RunService').Heartbeat:connect(function()
+
+                     if getgenv().myautoheal == true then
                          function food()
                              for i=1, getgenv().nospeed do
                                 autoheal(getgenv().nono) 
@@ -1842,6 +1844,7 @@ end
                              food()
                              end
                      end
+                     end)
                  end)
              end,
           })
