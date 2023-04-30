@@ -31,6 +31,7 @@ local Heals = Window:CreateTab("Auto-Heal", 4483362458) -- Title, Image
 local pik = Window:CreateTab("Pickup", 4483362458) -- Title, Image
 local pr = Window:CreateTab("Player", 4483362458) -- Title, Image
 local st = Window:CreateTab("Structures", 4483362458) -- Title, Image
+local lag = Window:CreateTab("Anti-Lag", 4483362458) -- Title, Image
 
 local humanoid = game.Players.LocalPlayer.Character.Humanoid
 
@@ -690,6 +691,7 @@ local Toggle = Farm:CreateToggle({
 
         game:GetService('RunService').Heartbeat:connect(function()
         if getgenv().plantfruit == true then
+            wait(0.05)
             for i, v in pairs(workspace:WaitForChild("Deployables"):GetChildren()) do
                 if v.Name == "Plant Box" and v.PrimaryPart ~= nil then
                     if not v:FindFirstChild(getgenv().tplantt) then
@@ -1840,4 +1842,37 @@ local keyautoheal = false
 local mouse = game.Players.LocalPlayer:GetMouse()
 local keypressed = false
 
--- Create GUI elements
+
+local Toggle = lag:CreateToggle({
+    Name = "Destroy All Bow Dropped",
+    CurrentValue = false,
+    Flag = "Toggle1",
+    Callback = function(t)
+getgenv().destroybows = t
+
+while getgenv().destroybows == true and wait(0.2) do
+    for i, v in pairs(game:GetService("Workspace").Items:GetChildren()) do
+        if v.Name == "Bow" or v.Name == "Iron Bow" or v.Name == "Crossbow" or v.Name == "Magnetite Crossbow" then
+        v:Destroy()
+        end
+        end
+end
+    end,
+ })
+
+ local Toggle = lag:CreateToggle({
+    Name = "Destroy All Fruits Dropped",
+    CurrentValue = false,
+    Flag = "Toggle1",
+    Callback = function(t)
+getgenv().destroyfruits = t
+
+while getgenv().destroyfruits == true and wait(0.2) do
+    for i, v in pairs(game:GetService("Workspace").Items:GetChildren()) do
+        if v.Name == "Berry" or v.Name == "Bloodfruit" or v.Name == "Lemon" or v.Name == "Strawberry" or v.Name == "Jelly" or v.Name == "Strangefruit" or v.Name == "Bluefruit" or v.Name == "Oddberry" or v.Name == "Sunfruit" then
+        v:Destroy()
+        end
+        end
+end
+    end,
+ })
