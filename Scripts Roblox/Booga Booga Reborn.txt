@@ -31,13 +31,416 @@ local Heals = Window:CreateTab("Auto-Heal", 4483362458) -- Title, Image
 local pik = Window:CreateTab("Pickup", 4483362458) -- Title, Image
 local pr = Window:CreateTab("Player", 4483362458) -- Title, Image
 local st = Window:CreateTab("Structures", 4483362458) -- Title, Image
+
 local humanoid = game.Players.LocalPlayer.Character.Humanoid
+
 -- Variables globales
 function autoheal(food)
     local item = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.RightPanel.Inventory.List[food].LayoutOrder
 
     game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("UseBagltem"):FireServer(item)
 end
+
+local Section = Heals:CreateSection("Speed - x1")
+
+local Slider = Heals:CreateSlider({
+    Name = "Start Auto Heal on: ",
+    Range = {1, 99},
+    Increment = 0.1,
+    Suffix = "Steps",
+    CurrentValue = 0,
+    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(t)
+        getgenv().sliderheal = t
+    end,
+ })
+
+         local Toggle = Heals:CreateToggle({
+             Name = "Bloodfruit - x1",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().bloodfruit = t
+    game:GetService('RunService').Heartbeat:connect(function()
+                if getgenv().bloodfruit == true then
+if humanoid.Health < getgenv().sliderheal then
+    autoheal("Bloodfruit") 
+end
+end
+end)
+             end,
+          })
+         
+
+        
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Bluefruit - x1",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().bluefruit1 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+                    if getgenv().bluefruit1 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Bluefruit")
+            
+            end
+            end
+        end)
+             end,
+          })
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Lemon - x1",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().lemon1 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+                if getgenv().lemon1 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Lemon") 
+                               end
+            end
+    end)
+             end,
+          })
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Jelly - x1",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().jelly1 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+                if getgenv().jelly1 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Jelly")                end
+            
+        end
+        end)
+             end,
+          })
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Strawberry - x1",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().strawberry1 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+                if getgenv().strawberry == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Strawberry")
+                            
+            end
+        end
+    end)
+             end,
+          })
+         
+          local Section = Heals:CreateSection("Speed - x4")
+         
+         local Toggle = Heals:CreateToggle({
+             Name = "Bloodfruit - x4",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().bloodfruit4 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+               
+                if getgenv().bloodfruit4 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Bloodfruit")
+                    autoheal("Bloodfruit") 
+                    autoheal("Bloodfruit") 
+                    autoheal("Bloodfruit") 
+                end
+       
+            end
+        end)
+             end,
+          })
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Berry - x4",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().berry4 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+               
+                if getgenv().berry4 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Berry") 
+                    autoheal("Berry") 
+                    autoheal("Berry") 
+                    autoheal("Berry") 
+
+                end
+            end
+
+            end)
+             end,
+          })
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Bluefruit - x4",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().bluefruit4 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+               
+                if getgenv().bluefruit4 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Bluefruit") 
+                    autoheal("Bluefruit") 
+                    autoheal("Bluefruit") 
+                    autoheal("Bluefruit") 
+                end
+            end
+                        end)
+             end,
+          })
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Lemon - x4",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().lemom4 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+               
+                if getgenv().lemon4 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Lemon") 
+                    autoheal("Lemon") 
+                    autoheal("Lemon") 
+                    autoheal("Lemon") 
+                end
+                        end
+        end)
+             end,
+          })
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Jelly - x4",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                getgenv().jelly4 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+               
+                if getgenv().jelly4 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Jelly") 
+                    autoheal("Jelly") 
+                    autoheal("Jelly") 
+                    autoheal("Jelly") 
+                end
+            end
+  
+    end)
+             end,
+          })
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Strawberry - x4",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+    game:GetService('RunService').Heartbeat:connect(function()
+
+                getgenv().strawberry4 = t
+               
+                if getgenv().strawberry4 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                    autoheal("Strawberry") 
+                    autoheal("Strawberry") 
+                    autoheal("Strawberry") 
+                    autoheal("Strawberry") 
+                end
+            end
+        end)
+             end,
+          })
+         
+          local Section = Heals:CreateSection("Speed - x5")
+         
+          local Toggle = Heals:CreateToggle({
+            Name = "Bloodfruit - x5",
+            CurrentValue = false,
+            Flag = "Toggle1",
+            Callback = function(t)
+            getgenv().bloodfruit5 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+           
+            if getgenv().bloodfruit5 == true then
+            if humanoid.Health < getgenv().sliderheal then
+            for i = 1, 5 do
+                autoheal("Bloodfruit") 
+            end
+            end
+        end
+ 
+        end)
+            end,
+            })
+            
+            local Toggle = Heals:CreateToggle({
+            Name = "Berry - x5",
+            CurrentValue = false,
+            Flag = "Toggle1",
+            Callback = function(t)
+            getgenv().berry5 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+           
+            if getgenv().berry5 == true then
+            if humanoid.Health < getgenv().sliderheal then
+            for i = 1, 5 do
+                autoheal("Berry") 
+            end
+            end
+
+    end
+        end)
+            end,
+            })
+            
+            local Toggle = Heals:CreateToggle({
+            Name = "Bluefruit - x5",
+            CurrentValue = false,
+            Flag = "Toggle1",
+            Callback = function(t)
+            getgenv().bluefruit5 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+           
+            if getgenv().bluefruit5 == true then
+            if humanoid.Health < getgenv().sliderheal then
+            for i = 1, 5 do
+                autoheal("Bluefruit") 
+            end
+            end
+        end
+
+        end)
+            end,
+            })
+            
+            local Toggle = Heals:CreateToggle({
+            Name = "Lemon - x5",
+            CurrentValue = false,
+            Flag = "Toggle1",
+            Callback = function(t)
+            getgenv().lemon5 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+           
+            if getgenv().lemon5 == true then
+            if humanoid.Health < getgenv().sliderheal then
+            for i = 1, 5 do
+                autoheal("Lemon") 
+            end
+            end
+ 
+            end
+        end)
+            end,
+            })
+            
+            local Toggle = Heals:CreateToggle({
+            Name = "Jelly - x5",
+            CurrentValue = false,
+            Flag = "Toggle1",
+            Callback = function(t)
+            getgenv().jelly5 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+           
+            if getgenv().jelly5 == true then
+            if humanoid.Health < getgenv().sliderheal then
+            for i = 1, 5 do
+                autoheal("Jelly") 
+            end
+            end
+        end
+     
+        end)
+            end,
+            })
+
+            local Toggle = Heals:CreateToggle({
+                Name = "Strawberry - x5",
+                CurrentValue = false,
+                Flag = "Toggle1",
+                Callback = function(t)
+                getgenv().strawberry5 = t
+    game:GetService('RunService').Heartbeat:connect(function()
+
+               
+                if getgenv().strawberry5 == true then
+                if humanoid.Health < getgenv().sliderheal then
+                for i = 1, 5 do
+                    autoheal("Strawberry") 
+                end
+                end
+            end
+                end)
+         
+                end,
+                })
+         
+         local Input = Heals:CreateInput({
+            Name = "Speed (4 recommended)",
+            PlaceholderText = "Input Placeholder",
+            RemoveTextAfterFocusLost = false,
+            Callback = function(t)
+             getgenv().nospeed = t
+            end,
+         })
+         
+         local Input = Heals:CreateInput({
+             Name = "Fruit",
+             PlaceholderText = "Input Placeholder",
+             RemoveTextAfterFocusLost = false,
+             Callback = function(t)
+              getgenv().nono = t
+             end,
+          })
+         
+          local Toggle = Heals:CreateToggle({
+             Name = "Start AutoHeal",
+             CurrentValue = false,
+             Flag = "Toggle1",
+             Callback = function(t)
+                 getgenv().myautoheal = t
+                 spawn(function()
+                     game:GetService('RunService').Heartbeat:connect(function()
+
+                     if getgenv().myautoheal == true then
+                         function food()
+                             for i=1, getgenv().nospeed do
+                                autoheal(getgenv().nono) 
+                            end
+                             end
+                             if game.Players.LocalPlayer.Character.Humanoid.Health < 100 then
+                             food()
+                             end
+                     end
+                     end)
+                 end)
+             end,
+          })
 
 
 function moveCharacter(positions, speed, tween, pauseTime)
@@ -285,32 +688,22 @@ local Toggle = Farm:CreateToggle({
     Callback = function(t)
         getgenv().plantfruit = t
 
-        while getgenv().plantfruit == true and wait(.05) do
-            local plantBoxWithPart = {}
-
-            local player = game.Players.LocalPlayer
-            local deployables = workspace.Deployables
-            local excluded = {} 
-            
-            while wait() do
-            if getgenv().getgenv().plantfruit == true then
-                for i, v in pairs(deployables:GetChildren()) do
-                    if v.Name == "Plant Box" and not excluded[v] then
-                        if not v:FindFirstChild(getgenv().tplantt) then
-                            if (player.Character.HumanoidRootPart.Position - v:FindFirstChildWhichIsA("BasePart").Position).magnitude < 17 then
-                                local a = {[1] = v, [2] = getgenv().tplantt}
-                                game:GetService("ReplicatedStorage").Events.lnteractStructure:FireServer(unpack(a))
-                                excluded[v] = true
-                                wait(0)
-                                excluded[v] = false
-                            end
+        game:GetService('RunService').Heartbeat:connect(function()
+        if getgenv().plantfruit == true then
+            for i, v in pairs(workspace:WaitForChild("Deployables"):GetChildren()) do
+                if v.Name == "Plant Box" and v.PrimaryPart ~= nil then
+                    if not v:FindFirstChild(getgenv().tplantt) then
+    if (v.PrimaryPart.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude < 17 then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v:FindFirstChildWhichIsA("BasePart").Position).magnitude < 17 then
+                            local a = {[1] = v, [2] = getgenv().tplantt}
+                            game:GetService("ReplicatedStorage").Events.lnteractStructure:FireServer(unpack(a))
                         end
                     end
                 end
             end
-            end
-            
-        end             
+end
+        end   
+    end)          
     end,
  })
 
@@ -1448,403 +1841,3 @@ local mouse = game.Players.LocalPlayer:GetMouse()
 local keypressed = false
 
 -- Create GUI elements
-local Section = Heals:CreateSection("Speed - x1")
-
-local Slider = Heals:CreateSlider({
-    Name = "Start Auto Heal on: ",
-    Range = {1, 99},
-    Increment = 0.1,
-    Suffix = "Steps",
-    CurrentValue = 0,
-    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(t)
-        getgenv().sliderheal = t
-    end,
- })
-
-         local Toggle = Heals:CreateToggle({
-             Name = "Bloodfruit - x1",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().bloodfruit = t
-    game:GetService('RunService').Heartbeat:connect(function()
-                if getgenv().bloodfruit == true then
-if humanoid.Health < getgenv().sliderheal then
-    autoheal("Bloodfruit") 
-end
-end
-end)
-             end,
-          })
-         
-
-        
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Bluefruit - x1",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().bluefruit1 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-                    if getgenv().bluefruit1 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Bluefruit")
-            
-            end
-            end
-        end)
-             end,
-          })
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Lemon - x1",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().lemon1 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-                if getgenv().lemon1 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Lemon") 
-                               end
-            end
-    end)
-             end,
-          })
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Jelly - x1",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().jelly1 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-                if getgenv().jelly1 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Jelly")                end
-            
-        end
-        end)
-             end,
-          })
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Strawberry - x1",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().strawberry1 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-                if getgenv().strawberry == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Strawberry")
-                            
-            end
-        end
-    end)
-             end,
-          })
-         
-          local Section = Heals:CreateSection("Speed - x4")
-         
-         local Toggle = Heals:CreateToggle({
-             Name = "Bloodfruit - x4",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().bloodfruit4 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-               
-                if getgenv().bloodfruit4 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Bloodfruit")
-                    autoheal("Bloodfruit") 
-                    autoheal("Bloodfruit") 
-                    autoheal("Bloodfruit") 
-                end
-       
-            end
-        end)
-             end,
-          })
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Berry - x4",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().berry4 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-               
-                if getgenv().berry4 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Berry") 
-                    autoheal("Berry") 
-                    autoheal("Berry") 
-                    autoheal("Berry") 
-
-                end
-            end
-
-            end)
-             end,
-          })
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Bluefruit - x4",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().bluefruit4 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-               
-                if getgenv().bluefruit4 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Bluefruit") 
-                    autoheal("Bluefruit") 
-                    autoheal("Bluefruit") 
-                    autoheal("Bluefruit") 
-                end
-            end
-                        end)
-             end,
-          })
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Lemon - x4",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().lemom4 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-               
-                if getgenv().lemon4 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Lemon") 
-                    autoheal("Lemon") 
-                    autoheal("Lemon") 
-                    autoheal("Lemon") 
-                end
-                        end
-        end)
-             end,
-          })
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Jelly - x4",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                getgenv().jelly4 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-               
-                if getgenv().jelly4 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Jelly") 
-                    autoheal("Jelly") 
-                    autoheal("Jelly") 
-                    autoheal("Jelly") 
-                end
-            end
-  
-    end)
-             end,
-          })
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Strawberry - x4",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-    game:GetService('RunService').Heartbeat:connect(function()
-
-                getgenv().strawberry4 = t
-               
-                if getgenv().strawberry4 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                    autoheal("Strawberry") 
-                    autoheal("Strawberry") 
-                    autoheal("Strawberry") 
-                    autoheal("Strawberry") 
-                end
-            end
-        end)
-             end,
-          })
-         
-          local Section = Heals:CreateSection("Speed - x5")
-         
-          local Toggle = Heals:CreateToggle({
-            Name = "Bloodfruit - x5",
-            CurrentValue = false,
-            Flag = "Toggle1",
-            Callback = function(t)
-            getgenv().bloodfruit5 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-           
-            if getgenv().bloodfruit5 == true then
-            if humanoid.Health < getgenv().sliderheal then
-            for i = 1, 5 do
-                autoheal("Bloodfruit") 
-            end
-            end
-        end
- 
-        end)
-            end,
-            })
-            
-            local Toggle = Heals:CreateToggle({
-            Name = "Berry - x5",
-            CurrentValue = false,
-            Flag = "Toggle1",
-            Callback = function(t)
-            getgenv().berry5 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-           
-            if getgenv().berry5 == true then
-            if humanoid.Health < getgenv().sliderheal then
-            for i = 1, 5 do
-                autoheal("Berry") 
-            end
-            end
-
-    end
-        end)
-            end,
-            })
-            
-            local Toggle = Heals:CreateToggle({
-            Name = "Bluefruit - x5",
-            CurrentValue = false,
-            Flag = "Toggle1",
-            Callback = function(t)
-            getgenv().bluefruit5 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-           
-            if getgenv().bluefruit5 == true then
-            if humanoid.Health < getgenv().sliderheal then
-            for i = 1, 5 do
-                autoheal("Bluefruit") 
-            end
-            end
-        end
-
-        end)
-            end,
-            })
-            
-            local Toggle = Heals:CreateToggle({
-            Name = "Lemon - x5",
-            CurrentValue = false,
-            Flag = "Toggle1",
-            Callback = function(t)
-            getgenv().lemon5 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-           
-            if getgenv().lemon5 == true then
-            if humanoid.Health < getgenv().sliderheal then
-            for i = 1, 5 do
-                autoheal("Lemon") 
-            end
-            end
- 
-            end
-        end)
-            end,
-            })
-            
-            local Toggle = Heals:CreateToggle({
-            Name = "Jelly - x5",
-            CurrentValue = false,
-            Flag = "Toggle1",
-            Callback = function(t)
-            getgenv().jelly5 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-           
-            if getgenv().jelly5 == true then
-            if humanoid.Health < getgenv().sliderheal then
-            for i = 1, 5 do
-                autoheal("Jelly") 
-            end
-            end
-        end
-     
-        end)
-            end,
-            })
-
-            local Toggle = Heals:CreateToggle({
-                Name = "Strawberry - x5",
-                CurrentValue = false,
-                Flag = "Toggle1",
-                Callback = function(t)
-                getgenv().strawberry5 = t
-    game:GetService('RunService').Heartbeat:connect(function()
-
-               
-                if getgenv().strawberry5 == true then
-                if humanoid.Health < getgenv().sliderheal then
-                for i = 1, 5 do
-                    autoheal("Strawberry") 
-                end
-                end
-            end
-                end)
-         
-                end,
-                })
-         
-         local Input = Heals:CreateInput({
-            Name = "Speed (4 recommended)",
-            PlaceholderText = "Input Placeholder",
-            RemoveTextAfterFocusLost = false,
-            Callback = function(t)
-             getgenv().nospeed = t
-            end,
-         })
-         
-         local Input = Heals:CreateInput({
-             Name = "Fruit",
-             PlaceholderText = "Input Placeholder",
-             RemoveTextAfterFocusLost = false,
-             Callback = function(t)
-              getgenv().nono = t
-             end,
-          })
-         
-          local Toggle = Heals:CreateToggle({
-             Name = "Start AutoHeal",
-             CurrentValue = false,
-             Flag = "Toggle1",
-             Callback = function(t)
-                 getgenv().myautoheal = t
-                 spawn(function()
-                     game:GetService('RunService').Heartbeat:connect(function()
-
-                     if getgenv().myautoheal == true then
-                         function food()
-                             for i=1, getgenv().nospeed do
-                                autoheal(getgenv().nono) 
-                            end
-                             end
-                             if game.Players.LocalPlayer.Character.Humanoid.Health < 100 then
-                             food()
-                             end
-                     end
-                     end)
-                 end)
-             end,
-          })
