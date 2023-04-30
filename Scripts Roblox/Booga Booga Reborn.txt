@@ -31,7 +31,7 @@ local Heals = Window:CreateTab("Auto-Heal", 4483362458) -- Title, Image
 local pik = Window:CreateTab("Pickup", 4483362458) -- Title, Image
 local pr = Window:CreateTab("Player", 4483362458) -- Title, Image
 local st = Window:CreateTab("Structures", 4483362458) -- Title, Image
-
+local humanoid = game.Players.LocalPlayer.Character.Humanoid
 -- Variables globales
 function autoheal(food)
     local item = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.RightPanel.Inventory.List[food].LayoutOrder
