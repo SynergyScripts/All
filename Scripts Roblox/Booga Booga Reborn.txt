@@ -39,8 +39,11 @@ local humanoid = game.Players.LocalPlayer.Character.Humanoid
 function autoheal(food)
     local item = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.RightPanel.Inventory.List[food].LayoutOrder
 
-    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("UseBagltem"):FireServer(item)
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("UseBagItem"):FireServer(item)
 end
+
+
+        
 
 local Section = Heals:CreateSection("Speed - x1")
 
@@ -71,9 +74,7 @@ end
 end)
              end,
           })
-         
 
-        
          
           local Toggle = Heals:CreateToggle({
              Name = "Bluefruit - x1",
@@ -230,6 +231,7 @@ end)
              end,
           })
          
+        
           local Toggle = Heals:CreateToggle({
              Name = "Jelly - x4",
              CurrentValue = false,
@@ -689,25 +691,26 @@ local Toggle = Farm:CreateToggle({
     Callback = function(t)
         getgenv().plantfruit = t
 
-        game:GetService('RunService').Heartbeat:connect(function()
-        if getgenv().plantfruit == true then
-            wait(0.05)
+       game:GetService("RunService").Heartbeat:Connect(function()
+        wait(0.09)
+        if getgenv().plantfruit == true  then
             for i, v in pairs(workspace:WaitForChild("Deployables"):GetChildren()) do
                 if v.Name == "Plant Box" and v.PrimaryPart ~= nil then
-                    if not v:FindFirstChild(getgenv().tplantt) then
-    if (v.PrimaryPart.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude < 17 then
-                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v:FindFirstChildWhichIsA("BasePart").Position).magnitude < 17 then
-                            local a = {[1] = v, [2] = getgenv().tplantt}
-                            game:GetService("ReplicatedStorage").Events.lnteractStructure:FireServer(unpack(a))
+                    if not v:FindFirstChild("Plant", true) then
+                        if (v.PrimaryPart.Position - game.Players.LocalPlayer.Character.Head.Position).magnitude < 17 then
+                            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v:FindFirstChildWhichIsA("BasePart").Position).magnitude < 17 then
+                                local a = {[1] = v, [2] = getgenv().tplantt}
+                                game:GetService("ReplicatedStorage").Events.lnteractStructure:FireServer(unpack(a))
+                            end
                         end
                     end
                 end
             end
-end
-        end   
-    end)          
+        end    
+    end)    
     end,
- })
+})
+
 
  local Slider = Farm:CreateSlider({
     Name = "Magnitude | Harverest",
@@ -931,6 +934,7 @@ end
 end
     end,
  })
+
 
  local Label = Farm:CreateLabel("TP Points 2")
 
@@ -1876,3 +1880,4 @@ while getgenv().destroyfruits == true and wait(0.2) do
 end
     end,
  })
+
