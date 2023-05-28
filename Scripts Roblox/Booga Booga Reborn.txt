@@ -711,19 +711,6 @@ local Toggle = Farm:CreateToggle({
     end,
 })
 
-
- local Slider = Farm:CreateSlider({
-    Name = "Magnitude | Harverest",
-    Range = {0, 60},
-    Increment = 0.1,
-    Suffix = "Steps",
-    CurrentValue = 0,
-    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(t)
-        getgenv().magnitudepaso = t
-    end,
- })
-
  local Toggle = Farm:CreateToggle({
     Name = "Harverest",
     CurrentValue = false,
@@ -739,7 +726,7 @@ local Toggle = Farm:CreateToggle({
                             function()
                                 spawn(
                                     function()
-                                        local S = getgenv().magnitudepaso, nil
+                                        local S = 17, nil
                                         local n = game.Players.LocalPlayer.Character.HumanoidRootPart
                                         for b, c in pairs(game:GetService("Workspace"):GetChildren()) do
                                             if c:FindFirstChild("Pickup") and c:IsA("Model") then
