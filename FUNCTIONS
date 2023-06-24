@@ -136,7 +136,7 @@ function updateESP2()
                 i.TextColor3 = Color3.fromRGB(0, 255, 0)
 
                 local function updateHealth()
-                    i.Text = "|HP|: " .. math.floor(v.Character.Humanoid.Health)
+                    i.Text = "|HP|: " .. math.floor(v.Character:WaitForChild("Humanoid").Health)
                 end
 
                 updateHealth()
