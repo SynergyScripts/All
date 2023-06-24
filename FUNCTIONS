@@ -102,48 +102,91 @@ game.Players.PlayerAdded:Connect(function(plr)
     end)
 end)
 
---[[local function health(parent, text, hum, turn)
-    if turn then
-hesp = turn
-        if not parent:FindFirstChild("BillHP") then
-            local e = Instance.new("BillboardGui", parent)
-            local i = Instance.new("TextLabel", e)
+local hesp = false
 
-            e.AlwaysOnTop = true
-            e.ResetOnSpawn = false
-            e.Name = "BillHP"
-            e.LightInfluence = 0
-            e.Size = UDim2.new(0, 10, 0, 10)
+function health(turn)
+    hesp = turn
+    updateESP()
+end
 
-            i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
-            i.BorderSizePixel = 4
-            i.Name = "Health"
-            i.LineHeight = 0
-            i.BorderColor3 = Color3.new(255, 10, 30)
-            i.BorderSizePixel = 0
-            i.Font = "SourceSans"
-            i.TextXAlignment = "Right"
-            i.TextSize = 15
-            i.TextStrokeTransparency = 0
-            i.TextColor3 = Color3.fromRGB(0, 255, 0)
+function updateESP()
+    for i, v in pairs(game.Players:GetPlayers()) do
+        if v ~= game.Players.LocalPlayer then
+            if hesp and not v.Character:WaitForChild("Head"):FindFirstChild("BillHP") then
+                local e = Instance.new("BillboardGui", v.Character:WaitForChild("Head"))
+                local i = Instance.new("TextLabel", e)
 
-            local function updateHealth()
-                i.Text = "|HP|: " .. math.floor(hum.Health)
+                e.AlwaysOnTop = true
+                e.ResetOnSpawn = false
+                e.Name = "BillHP"
+                e.LightInfluence = 0
+                e.Size = UDim2.new(0, 10, 0, 10)
+
+                i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
+                i.BorderSizePixel = 4
+                i.Name = "Health"
+                i.LineHeight = 0
+                i.BorderColor3 = Color3.new(255, 10, 30)
+                i.BorderSizePixel = 0
+                i.Font = "SourceSans"
+                i.TextXAlignment = "Right"
+                i.TextSize = 15
+                i.TextStrokeTransparency = 0
+                i.TextColor3 = Color3.fromRGB(0, 255, 0)
+
+                local function updateHealth()
+                    i.Text = "|HP|: " .. math.floor(v.Character.Humanoid.Health)
+                end
+
+                updateHealth()
+
+                v.Character:WaitForChild("Humanoid").HealthChanged:Connect(updateHealth)
+            elseif not hesp then
+                local head = v.Character:FindFirstChild("Head")
+                local billHp = head and head:FindFirstChild("BillHP")
+                if billHp then
+                    billHp:Destroy()
+                end
             end
-
-            updateHealth() -- Actualizar el texto al crearlo
-
-            hum:GetPropertyChangedSignal("Health"):Connect(updateHealth)
         end
     end
 end
 
-local function distance(parent, text, head, turn)
-    if turn then
-desp = turn
-        if not parent:FindFirstChild("BillDistance") then
-            local e = Instance.new("BillboardGui", parent)
+function fixederror()
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if hesp == true then
+            for i, v in pairs(game.Players:GetPlayers()) do
+                if v ~= game.Players.LocalPlayer then
+                    local character = v.Character
+                    if character and not character:FindFirstChild("BillHP") then
+                        updateESP()
+                    end
+                end
+            end
+        end
+    end)
+end
+
+game.Players.PlayerAdded:Connect(function(plr)
+    plr.CharacterAdded:Connect(function(char)
+        updateESP()
+        fixederror()
+    end)
+end)
+
+local desp = false
+
+function distance(turn)
+    desp = turn
+    updateESP()
+end
+
+function updateESP()
+    for i, v in pairs(game.Players:GetPlayers()) do
+        if v ~= game.Players.LocalPlayer then
+            if desp and not v.Character:FindFirstChild("Head"):FindFirstChild("BillDistance") then
+                   local e = Instance.new("BillboardGui", v.Character:WaitForChild("Head"))
             local i = Instance.new("TextLabel", e)
 
             e.AlwaysOnTop = true
@@ -166,84 +209,45 @@ desp = turn
             i.TextColor3 = Color3.fromRGB(255, 255, 255)
 
             local function updateDistance()
-                local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - head.Position).magnitude
+                local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - v.Character:WaitForChild("Head").Position).magnitude
                 i.Text = "   |" .. math.floor(distanceValue) .. "|"
             end
-
-            game:GetService("RunService").Heartbeat:Connect(function()
+                        game:GetService("RunService").Heartbeat:Connect(function()
                 updateDistance()
             end)
+            elseif not desp then
+                local character = v.Character
+                if character then
+                    local billDistance = character:FindFirstChild("Head") and character.Head:FindFirstChild("BillDistance")
+                    if billDistance then
+                        billDistance:Destroy()
+                    end
+                end
+            end
         end
     end
 end
 
-game.Players.PlayerAdded:Connect(function(plr)
-    plr.CharacterAdded:Connect(function(char)
-        if char then
-            local humanoid = char:WaitForChild("Humanoid")
-            if humanoid then
-                local head = char:WaitForChild("Head")
-                if head then
-                    if nesp then
-                        name(char:WaitForChild("Head"), char.Name, plr, nesp)
-                    end
-                    if hesp then
-                        health(char:WaitForChild("Head"), math.floor(humanoid.Health), humanoid, hesp)
-                    end
-                    if desp then
-                        local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - char.Head.Position).magnitude
-                        distance(char:WaitForChild("Head"), distanceValue, head, desp)
+function fixederror()
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if desp == true then
+            for i, v in pairs(game.Players:GetPlayers()) do
+                if v ~= game.Players.LocalPlayer then
+                    local character = v.Character
+                    if character and not character:FindFirstChild("Head"):FindFirstChild("BillDistance") then
+                        updateESP()
                     end
                 end
             end
         end
     end)
+end
+
+game.Players.PlayerAdded:Connect(function(plr)
+    plr.CharacterAdded:Connect(function(char)
+        updateESP()
+        fixederror()
+    end)
 end)
 
-game.Players.PlayerRemoving:Connect(function(plr)
-    for i, l in pairs(workspace:GetDescendants()) do
-        if l.Name == plr.Name .. "  " then
-            l.Parent:Destroy()
-        end
-    end
-end)
-
-game:GetService("RunService").Heartbeat:Connect(function()
-print("Hello2")
-    for i, h in pairs(game.Players:GetPlayers()) do
-        if h ~= game.Players.LocalPlayer then
-            local char = h.Character
-            if char then
-                local humanoid = char:WaitForChild("Humanoid")
-                if humanoid then
-                    local head = char:WaitForChild("Head")
-                    if head then
-                        local b = head:FindFirstChild("BillName")
-                        if nesp and not b then
-                            name(char:WaitForChild("Head"), char.Name, h, nesp)
-                        elseif not nesp and b then
-                            b:Destroy()
-                        end
-
-                        local h = head:FindFirstChild("BillHP")
-                        if hesp and not h then
-                            health(char:WaitForChild("Head"), math.floor(humanoid.Health), humanoid, hesp)
-                        elseif not hesp and h then
-                            h:Destroy()
-                        end
-
-                        local d = head:FindFirstChild("BillDistance")
-                        if desp and not d then
-                            local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - char.Head.Position).magnitude
-                            distance(char:WaitForChild("Head"), distanceValue, head, desp)
-                        elseif not desp and d then
-                            d:Destroy()
-                        end
-                    end
-                end
-            end
-        end
-    end
-end)
-]]--
 ---------------------------CLOSE ESP
