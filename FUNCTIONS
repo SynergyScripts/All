@@ -1,4 +1,5 @@
 print("ms")
+wait(10)
 --[[
 FFFFFFFFF    UU      UU    NN      NN    CCCCCCCC    TTTTTTTTTT    IIIIIIIII    OOOOOOOOO    NNN      NN    SSSSSSSS
 FF          UU      UU    NNN     NN   CC                TT          II      OO        OO   NNNN     NN  SS        
