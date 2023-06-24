@@ -204,7 +204,7 @@ function updateESP3()
                 i.TextColor3 = Color3.fromRGB(255, 255, 255)
 
                 local function updateDistance()
-                    local distanceValue = (LocalPlayer.Character.Head.Position - v.Character.Head.Position).magnitude
+                    local distanceValue = (LocalPlayer.Character:WaitForChild("Head").Position - v.Character:WaitForChild("Head").Position).magnitude
                     i.Text = "   |" .. math.floor(distanceValue) .. "|"
                 end
 
@@ -251,4 +251,4 @@ Players.PlayerAdded:Connect(function(plr)
 end)
 
 
----------------------------CLOSE ESP
+---------------------------CLOSE ESP--
