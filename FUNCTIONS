@@ -7,6 +7,7 @@ FF           UU    UU     NN    NNNN   CC                TT          II      OO 
 FF             UUUU       NN      NN    CCCCCCCC        TT        IIIIIIIII    OOOOOOOOO    NN    NNNN    SSSSSSSS
 
 ]]--
+----------LOCALS
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character
@@ -14,6 +15,10 @@ local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 local Head = Character:WaitForChild("Head")
 local Humanoid = Character:WaitForChild("Humanoid")
 local ownerusername = "EzPScript"
+----------------------------------------------------CLOSE LOCALS----------------------------------------------
+----------------------------------------GETGENV()-------------------------------------------------------
+getgenv().InfiniteJump = false
+---------------------------------------------CLOSE GETGENV()------------------------------------
 
 function msg(a)--ignore this
     print(a)
@@ -42,11 +47,11 @@ function name(turn)
 end
 
 function infjump(var)
-
+getgenv().InfiniteJump = var
                 local mouse = LocalPlayer:GetMouse()
                 
                 mouse.KeyDown:connect(function(key)
-                    if var == true and key == " "  then
+                    if getgenv().InfiniteJump == true and key == " "  then
        Character:FindFirstChildOfClass('Humanoid'):ChangeState(3)
         end
 end)
