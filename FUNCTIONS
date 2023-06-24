@@ -8,38 +8,13 @@ FF             UUUU       NN      NN    CCCCCCCC        TT        IIIIIIIII    O
 
 ]]--
 
---[[
-FFFFFFFFF    UU      UU    NN      NN    CCCCCCCC    TTTTTTTTTT    IIIIIIIII    OOOOOOOOO    NNN      NN    SSSSSSSS
-FF          UU      UU    NNN     NN   CC                TT          II      OO        OO   NNNN     NN  SS        
-FFFFFFFFF   UU      UU    NN  NN  NN   CC                TT          II      OO        OO   NN NN    NN   SSSSSSS 
-FF           UU    UU     NN    NNNN   CC                TT          II      OO        OO   NN  NN   NN         SS
-FF             UUUU       NN      NN    CCCCCCCC        TT        IIIIIIIII    OOOOOOOOO    NN    NNNN    SSSSSSSS
-
-]]--
-
---[[
-FFFFFFFFF    UU      UU    NN      NN    CCCCCCCC    TTTTTTTTTT    IIIIIIIII    OOOOOOOOO    NNN      NN    SSSSSSSS
-FF          UU      UU    NNN     NN   CC                TT          II      OO        OO   NNNN     NN  SS        
-FFFFFFFFF   UU      UU    NN  NN  NN   CC                TT          II      OO        OO   NN NN    NN   SSSSSSS 
-FF           UU    UU     NN    NNNN   CC                TT          II      OO        OO   NN  NN   NN         SS
-FF             UUUU       NN      NN    CCCCCCCC        TT        IIIIIIIII    OOOOOOOOO    NN    NNNN    SSSSSSSS
-
-]]--
-
---[[
-FFFFFFFFF    UU      UU    NN      NN    CCCCCCCC    TTTTTTTTTT    IIIIIIIII    OOOOOOOOO    NNN      NN    SSSSSSSS
-FF          UU      UU    NNN     NN   CC                TT          II      OO        OO   NNNN     NN  SS        
-FFFFFFFFF   UU      UU    NN  NN  NN   CC                TT          II      OO        OO   NN NN    NN   SSSSSSS 
-FF           UU    UU     NN    NNNN   CC                TT          II      OO        OO   NN  NN   NN         SS
-FF             UUUU       NN      NN    CCCCCCCC        TT        IIIIIIIII    OOOOOOOOO    NN    NNNN    SSSSSSSS
-
-]]--
 local me = game.Players.LocalPlayer
 local mename = me.Name
 local mechar = me.Character
 local meroot = mechar:WaitForChild("HumanoidRootPart")
 local mehead = mechar:WaitForChild("Head")
 local mehum = mechar:WaitForChild("Humanoid")
+local ownerusername = "EzPScript"
 function msg(a)
     print(a)
 end
