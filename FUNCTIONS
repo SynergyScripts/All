@@ -12,12 +12,16 @@ print(a)
 end
 
 --ESP
-local nesp = Instance.new("BoolValue")
-local hesp = Instance.new("BoolValue")
-local desp = Instance.new("BoolValue")
-nesp.Value = false
-hesp.Value = false
-desp.Value = false
+local Settings = {
+    nesp = Instance.new("BoolValue"),
+    hesp = Instance.new("BoolValue"),
+    desp = Instance.new("BoolValue"),
+}
+
+Settings.nesp.Value = false
+Settings.hesp.Value = false
+Settings.desp.Value = false
+
 
 local function name(parent, text, plr)
     if nesp.Value then
@@ -171,15 +175,15 @@ local function updateESPSettings()
     end
 end
 
-nesp.Changed:Connect(function()
+Settings.nesp.Changed:Connect(function()
 updateESPSettings()
 end)
 
-hesp.Changed:Connect(function()
+Settings.hesp.Changed:Connect(function()
 updateESPSettings()
 end)
 
-desp.Changed:Connect(function()
+Settings.desp.Changed:Connect(function()
 updateESPSettings()
 end)
 ---------------------------CLOSE ESP
