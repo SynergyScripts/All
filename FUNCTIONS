@@ -57,34 +57,28 @@ function updateESP1()
 
                 i.Parent = e
                 i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                i.Text = v.Name
                 i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
                 i.BorderSizePixel = 4
-                i.Name = "Name"
-                i.LineHeight = 0
+                i.LineHeight = 2
+                i.Name = v.Name
                 i.BorderColor3 = Color3.new(255, 10, 30)
                 i.BorderSizePixel = 0
                 i.Font = Enum.Font.SourceSans
-                i.TextXAlignment = Enum.TextXAlignment.Center
                 i.TextSize = 15
                 i.TextStrokeTransparency = 0
-                i.TextColor3 = Color3.fromRGB(255, 255, 255)
 
-                local function updateName()
-                    i.Text = v.Name
+                local function updateColor()
+                    local teamColor = v.TeamColor.Color
+                    i.TextColor3 = teamColor
                 end
 
-                updateName()
-
-                v.CharacterAdded:Connect(function(char)
-                    updateName()
-                end)
+                updateColor()
             elseif not nesp then
-                local character = v.Character
-                if character then
-                    local billName = character.Head:FindFirstChild("BillName")
-                    if billName then
-                        billName:Destroy()
-                    end
+                local head = v.Character:FindFirstChild("Head")
+                local billName = head and head:FindFirstChild("BillName")
+                if billName then
+                    billName:Destroy()
                 end
             end
         end
@@ -114,12 +108,46 @@ function health(turn)
 end
 
 function updateESP2()
-    for i, v in ipairs(Players:GetPlayers()) do
+     for i, v in ipairs(Players:GetPlayers()) do
         if v ~= LocalPlayer then
             if hesp and not v.Character:FindFirstChild("Head"):FindFirstChild("BillHP") then
-                -- Insert HP billboard creation code here
+                local e = Instance.new("BillboardGui")
+                local i = Instance.new("TextLabel")
+
+                e.Parent = v.Character.Head
+                e.AlwaysOnTop = true
+                e.ResetOnSpawn = false
+                e.Name = "BillHP"
+                e.LightInfluence = 0
+                e.Size = UDim2.new(0, 10, 0, 10)
+
+                i.Parent = e
+                i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
+                i.BorderSizePixel = 4
+                i.Name = "Health"
+                i.LineHeight = 0
+                i.BorderColor3 = Color3.new(255, 10, 30)
+                i.BorderSizePixel = 0
+                i.Font = Enum.Font.SourceSans
+                i.TextXAlignment = Enum.TextXAlignment.Right
+                i.TextSize = 15
+                i.TextStrokeTransparency = 0
+                i.TextColor3 = Color3.fromRGB(0, 255, 0)
+
+                local function updateHealth()
+                    i.Text = "|HP|: " .. math.floor(v.Character.Humanoid.Health)
+                end
+
+                updateHealth()
+
+                v.Character.Humanoid.HealthChanged:Connect(updateHealth)
             elseif not hesp then
-                -- Insert HP billboard removal code here
+                local head = v.Character:FindFirstChild("Head")
+                local billHp = head and head:FindFirstChild("BillHP")
+                if billHp then
+                    billHp:Destroy()
+                end
             end
         end
     end
@@ -148,12 +176,49 @@ function distance(turn)
 end
 
 function updateESP3()
-    for i, v in ipairs(Players:GetPlayers()) do
+      for i, v in ipairs(Players:GetPlayers()) do
         if v ~= LocalPlayer then
-            if desp and not v.Character:FindFirstChild("Head"):FindFirstChild("BillDistance") then
-                -- Insert distance billboard creation code here
+            if desp and not v.Character.Head:FindFirstChild("BillDistance") then
+                local e = Instance.new("BillboardGui")
+                local i = Instance.new("TextLabel")
+
+                e.Parent = v.Character.Head
+                e.AlwaysOnTop = true
+                e.ResetOnSpawn = false
+                e.Name = "BillDistance"
+                e.LightInfluence = 0
+                e.Size = UDim2.new(0, 10, 0, 10)
+
+                i.Parent = e
+                i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
+                i.BorderSizePixel = 4
+                i.Name = "Studs"
+                i.LineHeight = 0
+                i.BorderColor3 = Color3.new(255, 10, 30)
+                i.BorderSizePixel = 0
+                i.Font = Enum.Font.SourceSans
+                i.TextXAlignment = Enum.TextXAlignment.Left
+                i.TextSize = 15
+                i.TextStrokeTransparency = 0
+                i.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+                local function updateDistance()
+                    local distanceValue = (LocalPlayer.Character.Head.Position - v.Character.Head.Position).magnitude
+                    i.Text = "   |" .. math.floor(distanceValue) .. "|"
+                end
+
+                game:GetService("RunService").Heartbeat:Connect(function()
+                    updateDistance()
+                end)
             elseif not desp then
-                -- Insert distance billboard removal code here
+                local character = v.Character
+                if character then
+                    local billDistance = character.Head:FindFirstChild("BillDistance")
+                    if billDistance then
+                        billDistance:Destroy()
+                    end
+                end
             end
         end
     end
