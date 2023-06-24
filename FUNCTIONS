@@ -49,6 +49,7 @@ function infjump(var)
                     if var == true and key == " "  then
        Character:FindFirstChildOfClass('Humanoid'):ChangeState(3)
         end
+end)
 end
 function updateESP1()
     for i, v in ipairs(Players:GetPlayers()) do
