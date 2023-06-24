@@ -28,47 +28,81 @@ meroot.CFrame = CFrame.new(game.Players[playername].Character.PrimaryPart.Positi
 end
 ----CLOSE TELEPORTS---------------------------------------------------------------
 -- ESP
-local nesp = false
+
 local desp = false
 local hesp = false
-local function name(parent, text, plr, turn)
-    if turn then
-nesp = turn
-        if not parent:FindFirstChild("BillName") then
-            local e = Instance.new("BillboardGui", parent)
-            local i = Instance.new("TextLabel", e)
+local nesp = false
 
-            e.AlwaysOnTop = true
-            e.ResetOnSpawn = false
-            e.Name = "BillName"
-            e.LightInfluence = 0
-            e.Size = UDim2.new(0, 10, 0, 10)
+function name(turn)
+    nesp = turn
+    updateESP()
+end
 
-            i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            i.Text = text
-            i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
-            i.BorderSizePixel = 4
-            i.LineHeight = 2
-            i.Name = plr.Name
-            i.BorderColor3 = Color3.new(255, 10, 30)
-            i.BorderSizePixel = 0
-            i.Font = "SourceSans"
-            i.TextSize = 15
-            i.TextStrokeTransparency = 0
+function updateESP()
+    for i, v in pairs(game.Players:GetPlayers()) do
+        if v ~= game.Players.LocalPlayer then
+            if nesp and not v.Character:WaitForChild("Head"):FindFirstChild("BillName") then
+                local e = Instance.new("BillboardGui", v.Character:WaitForChild("Head"))
+                local i = Instance.new("TextLabel", e)
 
-            local function updateColor()
-                local teamColor = plr.TeamColor.Color
-                i.TextColor3 = teamColor
+                e.AlwaysOnTop = true
+                e.ResetOnSpawn = false
+                e.Name = "BillName"
+                e.LightInfluence = 0
+                e.Size = UDim2.new(0, 10, 0, 10)
+
+                i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                i.Text = v.Name
+                i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
+                i.BorderSizePixel = 4
+                i.LineHeight = 2
+                i.Name = v.Name
+                i.BorderColor3 = Color3.new(255, 10, 30)
+                i.BorderSizePixel = 0
+                i.Font = "SourceSans"
+                i.TextSize = 15
+                i.TextStrokeTransparency = 0
+
+                local function updateColor()
+                    local teamColor = v.TeamColor.Color
+                    i.TextColor3 = teamColor
+                end
+
+                updateColor()
+            elseif not nesp then
+                local head = v.Character:FindFirstChild("Head")
+                local billName = head and head:FindFirstChild("BillName")
+                if billName then
+                    billName:Destroy()
+                end
             end
-
-            updateColor() -- Actualizar el color del texto al crearlo
-
-            plr:GetPropertyChangedSignal("TeamColor"):Connect(updateColor)
         end
     end
 end
 
-local function health(parent, text, hum, turn)
+function fixederror()
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if nesp == true then
+            for i, v in pairs(game.Players:GetPlayers()) do
+                if v ~= game.Players.LocalPlayer then
+                    local character = v.Character
+                    if character and not character:FindFirstChild("BillName") then
+                        updateESP()
+                    end
+                end
+            end
+        end
+    end)
+end
+
+game.Players.PlayerAdded:Connect(function(plr)
+    plr.CharacterAdded:Connect(function(char)
+        updateESP()
+        fixederror()
+    end)
+end)
+
+--[[local function health(parent, text, hum, turn)
     if turn then
 hesp = turn
         if not parent:FindFirstChild("BillHP") then
@@ -211,5 +245,5 @@ print("Hello2")
         end
     end
 end)
-
+]]--
 ---------------------------CLOSE ESP
