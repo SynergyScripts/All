@@ -7,7 +7,8 @@ FF           UU    UU     NN    NNNN   CC                TT          II      OO 
 FF             UUUU       NN      NN    CCCCCCCC        TT        IIIIIIIII    OOOOOOOOO    NN    NNNN    SSSSSSSS
 
 ]]--
-
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 local Head = Character:WaitForChild("Head")
@@ -31,8 +32,7 @@ end
 
 -- ESP
 local nesp = false
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
+
 
 local nesp = false
 
