@@ -21,7 +21,7 @@ local ownerusername = "EzPScript"
 getgenv().InfiniteJump = false
 getgenv().flyKeyDown = nil
 getgenv().flyKeyUp = nil
-getgenv().FlyUpdated = nil
+getgenv().FlyUpdated = false
 ---------------------------------------------CLOSE GETGENV()------------------------------------
 
 function msg(a)--ignore this
@@ -44,6 +44,7 @@ end
        iyflyspeed = 0.25
        vehicleflyspeed = 0.25
        function fly(aw, speed)
+if getgenv().FlyUpdated == false then
            repeat
                wait()
            until Players.LocalPlayer and Players.LocalPlayer.Character and Players.LocalPlayer.Character.HumanoidRootPart and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
@@ -81,7 +82,7 @@ getgenv().FlyUpdated = true
                                iyflyspeed = speed
                                vehicleflyspeed = speed
                            end
-                           if aw == false or getgenv().FlyUpdated == true then
+                           if aw == false and getgenv().FlyUpdated == true then
                              FLYING = false
            if getgenv().flyKeyDown or getgenv().flyKeyUp then
                flyKeyDown:Disconnect()
@@ -175,6 +176,7 @@ getgenv().FlyUpdated = true
            )
            aB()
        end
+end
 
 
 
