@@ -174,7 +174,7 @@ game.Players.PlayerRemoving:Connect(function(plr)
 end)
 
 game:GetService("RunService").Heartbeat:Connect(function()
-print("Hello")
+print("Hello2")
     for i, h in pairs(game.Players:GetPlayers()) do
         if h ~= game.Players.LocalPlayer then
             local char = h.Character
@@ -186,7 +186,7 @@ print("Hello")
                         local b = head:FindFirstChild("BillName")
                         if nesp and not b then
                             name(char:WaitForChild("Head"), char.Name, h, nesp)
-                        elseif not Name:Get() and b then
+                        elseif not nesp and b then
                             b:Destroy()
                         end
 
