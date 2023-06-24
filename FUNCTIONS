@@ -41,6 +41,15 @@ function name(turn)
     updateESP1()
 end
 
+function infjump(var)
+
+                local mouse = LocalPlayer:GetMouse()
+                
+                mouse.KeyDown:connect(function(key)
+                    if var == true and key == " "  then
+       Character:FindFirstChildOfClass('Humanoid'):ChangeState(3)
+        end
+end
 function updateESP1()
     for i, v in ipairs(Players:GetPlayers()) do
         if v ~= LocalPlayer then
