@@ -12,12 +12,15 @@ print(a)
 end
 
 --ESP
-local nesp = false
-local hesp = false
-local desp = false
+local nesp = Instance.new("BoolValue")
+local hesp = Instance.new("BoolValue")
+local desp = Instance.new("BoolValue")
+nesp.Value = false
+hesp.Value = false
+desp.Value = false
 
 local function name(parent, text, plr)
-    if nesp then
+    if nesp.Value then
         if not parent:FindFirstChild("BillName") then
         local e = Instance.new("BillboardGui", parent)
         local i = Instance.new("TextLabel", e)
@@ -53,7 +56,7 @@ local function name(parent, text, plr)
 end
 
 local function health(parent, text, hum)
-    if hesp then
+    if hesp.Value then
         if not parent:FindFirstChild("BillHP") then
         local e = Instance.new("BillboardGui", parent)
         local i = Instance.new("TextLabel", e)
@@ -89,7 +92,7 @@ local function health(parent, text, hum)
 end
 
 local function distance(parent, text, head)
-    if desp then
+    if desp.Value then
         if not parent:FindFirstChild("BillDistance") then
         local e = Instance.new("BillboardGui", parent)
         local i = Instance.new("TextLabel", e)
