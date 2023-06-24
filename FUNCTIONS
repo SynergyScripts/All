@@ -12,19 +12,9 @@ function msg(a)
 end
 
 -- ESP
-local Settings = {
-    nesp = Instance.new("BoolValue"),
-    hesp = Instance.new("BoolValue"),
-    desp = Instance.new("BoolValue"),
-}
 
-Settings.nesp.Value = false
-Settings.hesp.Value = false
-Settings.desp.Value = false
-
-
-local function name(parent, text, plr)
-    if Settings.nesp.Value then
+local function name(parent, text, plr, turn)
+    if turn then
         if not parent:FindFirstChild("BillName") then
             local e = Instance.new("BillboardGui", parent)
             local i = Instance.new("TextLabel", e)
@@ -59,8 +49,8 @@ local function name(parent, text, plr)
     end
 end
 
-local function health(parent, text, hum)
-    if Settings.hesp.Value then
+local function health(parent, text, hum, turn)
+    if turn then
         if not parent:FindFirstChild("BillHP") then
             local e = Instance.new("BillboardGui", parent)
             local i = Instance.new("TextLabel", e)
@@ -95,8 +85,8 @@ local function health(parent, text, hum)
     end
 end
 
-local function distance(parent, text, head)
-    if Settings.desp.Value then
+local function distance(parent, text, head, turn)
+    if turn then
         if not parent:FindFirstChild("BillDistance") then
             local e = Instance.new("BillboardGui", parent)
             local i = Instance.new("TextLabel", e)
@@ -132,51 +122,5 @@ local function distance(parent, text, head)
     end
 end
 
-local function updateESPSettings()
-    for i, plr in pairs(game.Players:GetPlayers()) do
-        if plr ~= game.Players.LocalPlayer then
-            local char = plr.Character
-            if char then
-                local humanoid = char:FindFirstChild("Humanoid")
-                if humanoid then
-                    local head = char:FindFirstChild("Head")
-                    if head then
-                        if Settings.nesp.Value then
-                            name(head, plr.Name, plr)
-                        else
-                            local billName = head:FindFirstChild("BillName")
-                            if billName then
-                                billName:Destroy()
-                            end
-                        end
-
-                        if Settings.hesp.Value then
-                            health(head, math.floor(humanoid.Health), humanoid)
-                        else
-                            local billHP = head:FindFirstChild("BillHP")
-                            if billHP then
-                                billHP:Destroy()
-                            end
-                        end
-
-                        if Settings.desp.Value then
-                            local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - head.Position).magnitude
-                            distance(head, distanceValue, head)
-                        else
-                            local billDistance = head:FindFirstChild("BillDistance")
-                            if billDistance then
-                                billDistance:Destroy()
-                            end
-                        end
-                    end
-                end
-            end
-        end
-    end
-end
-
-Settings.nesp.Changed:Connect(updateESPSettings)
-Settings.hesp.Changed:Connect(updateESPSettings)
-Settings.desp.Changed:Connect(updateESPSettings)
 
 ---------------------------CLOSE ESP
