@@ -1,4 +1,4 @@
---Made By https://discord.gg/FWtTCTpSnc (Discord Server)
+ --Made By https://discord.gg/FWtTCTpSnc (Discord Server)
 --[[
 FFFFFFFFF    UU      UU    NN      NN    CCCCCCCC    TTTTTTTTTT    IIIIIIIII    OOOOOOOOO    NNN      NN    SSSSSSSS
 FF          UU      UU    NNN     NN   CC                TT          II      OO        OO   NNNN     NN  SS        
@@ -21,7 +21,6 @@ local ownerusername = "EzPScript"
 getgenv().InfiniteJump = false
 getgenv().flyKeyDown = nil
 getgenv().flyKeyUp = nil
-getgenv().FlyUpdated = false
 ---------------------------------------------CLOSE GETGENV()------------------------------------
 
 function msg(a)--ignore this
@@ -40,11 +39,11 @@ end
 ----CLOSE TELEPORTS---------------------------------------------------------------
 
 ------------------------FLY-----------------------------------------------
+       local Mouse = game.Players.LocalPlayer:GetMouse()
        FLYING = false
        iyflyspeed = 0.25
        vehicleflyspeed = 0.25
        function fly(aw, speed)
-if getgenv().FlyUpdated == false then
            repeat
                wait()
            until Players.LocalPlayer and Players.LocalPlayer.Character and Players.LocalPlayer.Character.HumanoidRootPart and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
@@ -61,7 +60,6 @@ if getgenv().FlyUpdated == false then
            local aA = 0
            local function aB()
                FLYING = true
-getgenv().FlyUpdated = true
                local aC = Instance.new("BodyGyro")
                local aD = Instance.new("BodyVelocity")
                aC.P = 9e4
@@ -82,7 +80,7 @@ getgenv().FlyUpdated = true
                                iyflyspeed = speed
                                vehicleflyspeed = speed
                            end
-                           if aw == false and getgenv().FlyUpdated == true then
+                           if aw == false then
                              FLYING = false
            if getgenv().flyKeyDown or getgenv().flyKeyUp then
                flyKeyDown:Disconnect()
@@ -176,8 +174,11 @@ getgenv().FlyUpdated = true
            )
            aB()
        end
-end
 
+       
+fly(true, 1)
+       wait(10)
+fly(false)
 
 
 -----------------------CLOSE  FLY------------------------------------------------
