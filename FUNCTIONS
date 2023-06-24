@@ -29,16 +29,14 @@ end
 ----CLOSE TELEPORTS---------------------------------------------------------------
 -- ESP
 
-local desp = false
-local hesp = false
 local nesp = false
 
 function name(turn)
     nesp = turn
-    updateESP()
+    updateESP1()
 end
 
-function updateESP()
+function updateESP1()
     for i, v in pairs(game.Players:GetPlayers()) do
         if v ~= game.Players.LocalPlayer then
             if nesp and not v.Character:WaitForChild("Head"):FindFirstChild("BillName") then
@@ -80,14 +78,14 @@ function updateESP()
     end
 end
 
-function fixederror()
+function fixederro1r()
     game:GetService("RunService").Heartbeat:Connect(function()
         if nesp == true then
             for i, v in pairs(game.Players:GetPlayers()) do
                 if v ~= game.Players.LocalPlayer then
                     local character = v.Character
                     if character and not character:FindFirstChild("BillName") then
-                        updateESP()
+                        updateESP1()
                     end
                 end
             end
@@ -97,8 +95,8 @@ end
 
 game.Players.PlayerAdded:Connect(function(plr)
     plr.CharacterAdded:Connect(function(char)
-        updateESP()
-        fixederror()
+        updateESP1()
+        fixederror1()
     end)
 end)
 
@@ -106,10 +104,10 @@ local hesp = false
 
 function health(turn)
     hesp = turn
-    updateESP()
+    updateESP2()
 end
 
-function updateESP()
+function updateESP2()
     for i, v in pairs(game.Players:GetPlayers()) do
         if v ~= game.Players.LocalPlayer then
             if hesp and not v.Character:WaitForChild("Head"):FindFirstChild("BillHP") then
@@ -153,14 +151,14 @@ function updateESP()
     end
 end
 
-function fixederror()
+function fixederror2()
     game:GetService("RunService").Heartbeat:Connect(function()
         if hesp == true then
             for i, v in pairs(game.Players:GetPlayers()) do
                 if v ~= game.Players.LocalPlayer then
                     local character = v.Character
                     if character and not character:FindFirstChild("BillHP") then
-                        updateESP()
+                        updateESP2()
                     end
                 end
             end
@@ -170,8 +168,8 @@ end
 
 game.Players.PlayerAdded:Connect(function(plr)
     plr.CharacterAdded:Connect(function(char)
-        updateESP()
-        fixederror()
+        updateESP2()
+        fixederror2()
     end)
 end)
 
@@ -182,7 +180,7 @@ function distance(turn)
     updateESP()
 end
 
-function updateESP()
+function updateESP3()
     for i, v in pairs(game.Players:GetPlayers()) do
         if v ~= game.Players.LocalPlayer then
             if desp and not v.Character:FindFirstChild("Head"):FindFirstChild("BillDistance") then
@@ -228,14 +226,14 @@ function updateESP()
     end
 end
 
-function fixederror()
+function fixederror3()
     game:GetService("RunService").Heartbeat:Connect(function()
         if desp == true then
             for i, v in pairs(game.Players:GetPlayers()) do
                 if v ~= game.Players.LocalPlayer then
                     local character = v.Character
                     if character and not character:FindFirstChild("Head"):FindFirstChild("BillDistance") then
-                        updateESP()
+                        updateESP3()
                     end
                 end
             end
@@ -245,8 +243,8 @@ end
 
 game.Players.PlayerAdded:Connect(function(plr)
     plr.CharacterAdded:Connect(function(char)
-        updateESP()
-        fixederror()
+        updateESP3()
+        fixederror3()
     end)
 end)
 
