@@ -8,10 +8,10 @@ FF             UUUU       NN      NN    CCCCCCCC        TT        IIIIIIIII    O
 ]]--
 
 function msg(a)
-print(a)
+    print(a)
 end
 
---ESP
+-- ESP
 local Settings = {
     nesp = Instance.new("BoolValue"),
     hesp = Instance.new("BoolValue"),
@@ -24,111 +24,111 @@ Settings.desp.Value = false
 
 
 local function name(parent, text, plr)
-    if nesp.Value then
+    if Settings.nesp.Value then
         if not parent:FindFirstChild("BillName") then
-        local e = Instance.new("BillboardGui", parent)
-        local i = Instance.new("TextLabel", e)
-        
-        e.AlwaysOnTop = true
-        e.ResetOnSpawn = false
-        e.Name = "BillName"
-        e.LightInfluence = 0
-        e.Size = UDim2.new(0, 10, 0, 10)
-        
-        i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        i.Text = text
-        i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
-        i.BorderSizePixel = 4
-        i.LineHeight = 2
-        i.Name = plr.Name
-        i.BorderColor3 = Color3.new(255, 10, 30)
-        i.BorderSizePixel = 0
-        i.Font = "SourceSans"
-        i.TextSize = 15
-        i.TextStrokeTransparency = 0
-        
-        local function updateColor()
-            local teamColor = plr.TeamColor.Color
-            i.TextColor3 = teamColor
+            local e = Instance.new("BillboardGui", parent)
+            local i = Instance.new("TextLabel", e)
+
+            e.AlwaysOnTop = true
+            e.ResetOnSpawn = false
+            e.Name = "BillName"
+            e.LightInfluence = 0
+            e.Size = UDim2.new(0, 10, 0, 10)
+
+            i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            i.Text = text
+            i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
+            i.BorderSizePixel = 4
+            i.LineHeight = 2
+            i.Name = plr.Name
+            i.BorderColor3 = Color3.new(255, 10, 30)
+            i.BorderSizePixel = 0
+            i.Font = "SourceSans"
+            i.TextSize = 15
+            i.TextStrokeTransparency = 0
+
+            local function updateColor()
+                local teamColor = plr.TeamColor.Color
+                i.TextColor3 = teamColor
+            end
+
+            updateColor() -- Actualizar el color del texto al crearlo
+
+            plr:GetPropertyChangedSignal("TeamColor"):Connect(updateColor)
         end
-        
-        updateColor() -- Actualizar el color del texto al crearlo
-        
-        plr:GetPropertyChangedSignal("TeamColor"):Connect(updateColor)
-    end
     end
 end
 
 local function health(parent, text, hum)
-    if hesp.Value then
+    if Settings.hesp.Value then
         if not parent:FindFirstChild("BillHP") then
-        local e = Instance.new("BillboardGui", parent)
-        local i = Instance.new("TextLabel", e)
-        
-        e.AlwaysOnTop = true
-        e.ResetOnSpawn = false
-        e.Name = "BillHP"
-        e.LightInfluence = 0
-        e.Size = UDim2.new(0, 10, 0, 10)
-        
-        i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
-        i.BorderSizePixel = 4
-        i.Name = "Health"
-        i.LineHeight = 0
-        i.BorderColor3 = Color3.new(255, 10, 30)
-        i.BorderSizePixel = 0
-        i.Font = "SourceSans"
-        i.TextXAlignment = "Right"
-        i.TextSize = 15
-        i.TextStrokeTransparency = 0
-        i.TextColor3 = Color3.fromRGB(0, 255, 0)
-        
-        local function updateHealth()
-            i.Text = "|HP|: " .. math.floor(hum.Health)
+            local e = Instance.new("BillboardGui", parent)
+            local i = Instance.new("TextLabel", e)
+
+            e.AlwaysOnTop = true
+            e.ResetOnSpawn = false
+            e.Name = "BillHP"
+            e.LightInfluence = 0
+            e.Size = UDim2.new(0, 10, 0, 10)
+
+            i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
+            i.BorderSizePixel = 4
+            i.Name = "Health"
+            i.LineHeight = 0
+            i.BorderColor3 = Color3.new(255, 10, 30)
+            i.BorderSizePixel = 0
+            i.Font = "SourceSans"
+            i.TextXAlignment = "Right"
+            i.TextSize = 15
+            i.TextStrokeTransparency = 0
+            i.TextColor3 = Color3.fromRGB(0, 255, 0)
+
+            local function updateHealth()
+                i.Text = "|HP|: " .. math.floor(hum.Health)
+            end
+
+            updateHealth() -- Actualizar el texto al crearlo
+
+            hum:GetPropertyChangedSignal("Health"):Connect(updateHealth)
         end
-        
-        updateHealth() -- Actualizar el texto al crearlo
-        
-        hum:GetPropertyChangedSignal("Health"):Connect(updateHealth)
-    end
     end
 end
 
 local function distance(parent, text, head)
-    if desp.Value then
+    if Settings.desp.Value then
         if not parent:FindFirstChild("BillDistance") then
-        local e = Instance.new("BillboardGui", parent)
-        local i = Instance.new("TextLabel", e)
-        
-        e.AlwaysOnTop = true
-        e.ResetOnSpawn = false
-        e.Name = "BillDistance"
-        e.LightInfluence = 0
-        e.Size = UDim2.new(0, 10, 0, 10)
-        
-        i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
-        i.BorderSizePixel = 4
-        i.Name = "Studs"
-        i.LineHeight = 0
-        i.BorderColor3 = Color3.new(255, 10, 30)
-        i.BorderSizePixel = 0
-        i.Font = "SourceSans"
-        i.TextXAlignment = "Left"
-        i.TextSize = 15
-        i.TextStrokeTransparency = 0
-        i.TextColor3 = Color3.fromRGB(255, 255, 255)
-        
-        local function updateDistance()
-            local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - head.Position).magnitude
-            i.Text = "   |" .. math.floor(distanceValue) .. "|"
+            local e = Instance.new("BillboardGui", parent)
+            local i = Instance.new("TextLabel", e)
+
+            e.AlwaysOnTop = true
+            e.ResetOnSpawn = false
+            e.Name = "BillDistance"
+            e.LightInfluence = 0
+            e.Size = UDim2.new(0, 10, 0, 10)
+
+            i.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            i.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001)
+            i.BorderSizePixel = 4
+            i.Name = "Studs"
+            i.LineHeight = 0
+            i.BorderColor3 = Color3.new(255, 10, 30)
+            i.BorderSizePixel = 0
+            i.Font = "SourceSans"
+            i.TextXAlignment = "Left"
+            i.TextSize = 15
+            i.TextStrokeTransparency = 0
+            i.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+            local function updateDistance()
+                local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - head.Position).magnitude
+                i.Text = "   |" .. math.floor(distanceValue) .. "|"
+            end
+
+            game:GetService("RunService").Heartbeat:Connect(function()
+                updateDistance()
+            end)
         end
-        
-        game:GetService("RunService").Heartbeat:Connect(function()
-            updateDistance()
-        end)
-    end
     end
 end
 
@@ -149,7 +149,7 @@ local function updateESPSettings()
                                 billName:Destroy()
                             end
                         end
-                        
+
                         if Settings.hesp.Value then
                             health(head, math.floor(humanoid.Health), humanoid)
                         else
@@ -158,7 +158,7 @@ local function updateESPSettings()
                                 billHP:Destroy()
                             end
                         end
-                        
+
                         if Settings.desp.Value then
                             local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - head.Position).magnitude
                             distance(head, distanceValue, head)
