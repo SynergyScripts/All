@@ -141,7 +141,7 @@ local function updateESPSettings()
                 if humanoid then
                     local head = char:FindFirstChild("Head")
                     if head then
-                        if nesp then
+                        if Settings.nesp.Value then
                             name(head, plr.Name, plr)
                         else
                             local billName = head:FindFirstChild("BillName")
@@ -150,7 +150,7 @@ local function updateESPSettings()
                             end
                         end
                         
-                        if hesp then
+                        if Settings.hesp.Value then
                             health(head, math.floor(humanoid.Health), humanoid)
                         else
                             local billHP = head:FindFirstChild("BillHP")
@@ -159,7 +159,7 @@ local function updateESPSettings()
                             end
                         end
                         
-                        if desp then
+                        if Settings.desp.Value then
                             local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - head.Position).magnitude
                             distance(head, distanceValue, head)
                         else
@@ -175,15 +175,8 @@ local function updateESPSettings()
     end
 end
 
-Settings.nesp.Changed:Connect(function()
-updateESPSettings()
-end)
+Settings.nesp.Changed:Connect(updateESPSettings)
+Settings.hesp.Changed:Connect(updateESPSettings)
+Settings.desp.Changed:Connect(updateESPSettings)
 
-Settings.hesp.Changed:Connect(function()
-updateESPSettings()
-end)
-
-Settings.desp.Changed:Connect(function()
-updateESPSettings()
-end)
 ---------------------------CLOSE ESP
