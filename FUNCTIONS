@@ -44,7 +44,7 @@ end
 function updateESP1()
     for i, v in ipairs(Players:GetPlayers()) do
         if v ~= LocalPlayer then
-            if nesp and not v.Character:FindFirstChild("Head"):FindFirstChild("BillName") then
+            if nesp and not v.Character:WaitForChild("Head"):FindFirstChild("BillName") then
                 local e = Instance.new("BillboardGui")
                 local i = Instance.new("TextLabel")
 
@@ -75,7 +75,7 @@ function updateESP1()
 
                 updateColor()
             elseif not nesp then
-                local head = v.Character:FindFirstChild("Head")
+                local head = v.Character:WaitForChild("Head")
                 local billName = head and head:FindFirstChild("BillName")
                 if billName then
                     billName:Destroy()
@@ -91,7 +91,7 @@ function fixedError1()
             for i, v in ipairs(Players:GetPlayers()) do
                 if v ~= LocalPlayer then
                     local character = v.Character
-                    if character and not character:FindFirstChild("BillName") then
+                    if character and not character:WaitForChild("Head"):FindFirstChild("BillName") then
                         updateESP1()
                     end
                 end
@@ -110,7 +110,7 @@ end
 function updateESP2()
      for i, v in ipairs(Players:GetPlayers()) do
         if v ~= LocalPlayer then
-            if hesp and not v.Character:FindFirstChild("Head"):FindFirstChild("BillHP") then
+            if hesp and not v.Character:WaitForChild("Head"):FindFirstChild("BillHP") then
                 local e = Instance.new("BillboardGui")
                 local i = Instance.new("TextLabel")
 
@@ -141,9 +141,9 @@ function updateESP2()
 
                 updateHealth()
 
-                v.Character.Humanoid.HealthChanged:Connect(updateHealth)
+                v.Character:WaitForChild("Humanoid"):GetPropertyChangedSignal("Health"):Connect(updateHealth)
             elseif not hesp then
-                local head = v.Character:FindFirstChild("Head")
+                local head = v.Character:WaitForChild("Head")
                 local billHp = head and head:FindFirstChild("BillHP")
                 if billHp then
                     billHp:Destroy()
@@ -159,7 +159,7 @@ function fixedError2()
             for i, v in ipairs(Players:GetPlayers()) do
                 if v ~= LocalPlayer then
                     local character = v.Character
-                    if character and not character:FindFirstChild("BillHP") then
+                    if character and not character:WaitForChild("Head"):FindFirstChild("BillHP") then
                         updateESP2()
                     end
                 end
@@ -178,11 +178,11 @@ end
 function updateESP3()
       for i, v in ipairs(Players:GetPlayers()) do
         if v ~= LocalPlayer then
-            if desp and not v.Character.Head:FindFirstChild("BillDistance") then
+            if desp and not v.Character:WaitForChild("Head"):FindFirstChild("BillDistance") then
                 local e = Instance.new("BillboardGui")
                 local i = Instance.new("TextLabel")
 
-                e.Parent = v.Character.Head
+                e.Parent = v.Character:WaitForChild("Head")
                 e.AlwaysOnTop = true
                 e.ResetOnSpawn = false
                 e.Name = "BillDistance"
@@ -214,7 +214,7 @@ function updateESP3()
             elseif not desp then
                 local character = v.Character
                 if character then
-                    local billDistance = character.Head:FindFirstChild("BillDistance")
+                    local billDistance = character:WaitForChild("Head"):FindFirstChild("BillDistance")
                     if billDistance then
                         billDistance:Destroy()
                     end
@@ -230,7 +230,7 @@ function fixedError3()
             for i, v in ipairs(Players:GetPlayers()) do
                 if v ~= LocalPlayer then
                     local character = v.Character
-                    if character and not character:FindFirstChild("BillDistance") then
+                    if character and not character:WaitForChild("Head"):FindFirstChild("BillDistance") then
                         updateESP3()
                     end
                 end
@@ -239,6 +239,18 @@ function fixedError3()
     end)
 end
 
+for i, v in pairs(game.Players:GetPlayers()) do
+if v~= game.Players.LocalPlayer then
+v.CharacterAdded:Connect(function()
+        updateESP1()
+        updateESP2()
+        updateESP3()
+        fixedError1()
+        fixedError2()
+        fixedError3()
+end)
+end
+end
 Players.PlayerAdded:Connect(function(plr)
     plr.CharacterAdded:Connect(function(char)
         updateESP1()
