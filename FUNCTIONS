@@ -208,9 +208,10 @@ function updateESP3()
                     i.Text = "   |" .. math.floor(distanceValue) .. "|"
                 end
 
-                game:GetService("RunService").Heartbeat:Connect(function()
+                while true do
+wait(.2)
                     updateDistance()
-                end)
+                end
             elseif not desp then
                 local character = v.Character
                 if character then
