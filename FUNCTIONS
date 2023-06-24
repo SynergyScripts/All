@@ -15,22 +15,22 @@ local Head = Character:WaitForChild("Head")
 local Humanoid = Character:WaitForChild("Humanoid")
 local ownerusername = "EzPScript"
 
-function msg(a)
+function msg(a)--ignore this
     print(a)
 end
 
 -- Teleports
-function teleport(x, y, z)
+function teleport(x, y, z)--this is for teleport, for example:  teleport(121, 209, 1298)
     HumanoidRootPart.CFrame = CFrame.new(x, y, z)
 end
 
-function teleporttoplayer(playername)
+function teleporttoplayer(playername)--this is for teleport to player, for example: teleporttoplayer("EzPScript")
     HumanoidRootPart.CFrame = CFrame.new(Players[playername].Character.PrimaryPart.Position)
 end
 
 ----CLOSE TELEPORTS---------------------------------------------------------------
 
--- ESP
+-- ESP---------------------LOOK THE CLOSE ESP FOR UNDERSTAND HOW TO USE  THIS
 local nesp = false
 
 
@@ -267,5 +267,13 @@ Players.PlayerAdded:Connect(function(plr)
     end)
 end)
 
-
+--[[EXAMPLES:
+this is for activate
+name(true)
+health(true)
+distance(true)
+if you want desactivate just change the true to false, for example
+name(false)
+health(false)
+distance(false)
 ---------------------------CLOSE ESP--
