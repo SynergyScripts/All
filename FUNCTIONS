@@ -159,7 +159,7 @@ game.Players.PlayerRemoving:Connect(function(plr)
 end)
 
 game:GetService("RunService").Heartbeat:Connect(function()
-
+print("Hello")
     for i, h in pairs(game.Players:GetPlayers()) do
         if h ~= game.Players.LocalPlayer then
             local char = h.Character
