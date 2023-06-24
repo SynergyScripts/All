@@ -12,9 +12,12 @@ function msg(a)
 end
 
 -- ESP
-
+local nesp = false
+local desp = false
+local hesp = false
 local function name(parent, text, plr, turn)
     if turn then
+nesp = turn
         if not parent:FindFirstChild("BillName") then
             local e = Instance.new("BillboardGui", parent)
             local i = Instance.new("TextLabel", e)
@@ -51,6 +54,7 @@ end
 
 local function health(parent, text, hum, turn)
     if turn then
+hesp = turn
         if not parent:FindFirstChild("BillHP") then
             local e = Instance.new("BillboardGui", parent)
             local i = Instance.new("TextLabel", e)
@@ -87,6 +91,7 @@ end
 
 local function distance(parent, text, head, turn)
     if turn then
+desp = turn
         if not parent:FindFirstChild("BillDistance") then
             local e = Instance.new("BillboardGui", parent)
             local i = Instance.new("TextLabel", e)
@@ -122,5 +127,74 @@ local function distance(parent, text, head, turn)
     end
 end
 
+game.Players.PlayerAdded:Connect(function(plr)
+    plr.CharacterAdded:Connect(function(char)
+        if char then
+            local humanoid = char:WaitForChild("Humanoid")
+            if humanoid then
+                local head = char:WaitForChild("Head")
+                if head then
+                    if Name:Get() then
+                        name(char:WaitForChild("Head"), char.Name, plr)
+                    end
+                    if Health:Get() then
+                        health(char:WaitForChild("Head"), math.floor(humanoid.Health), humanoid)
+                    end
+                    if Distance:Get() then
+                        local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - char.Head.Position).magnitude
+                        distance(char:WaitForChild("Head"), distanceValue, head)
+                    end
+                end
+            end
+        end
+    end)
+end)
+
+game.Players.PlayerRemoving:Connect(function(plr)
+    for i, l in pairs(workspace:GetDescendants()) do
+        if l.Name == plr.Name .. "  " then
+            l.Parent:Destroy()
+        end
+    end
+end)
+
+game:GetService("RunService").Heartbeat:Connect(function()
+    updateESPSettings()
+
+    for i, h in pairs(game.Players:GetPlayers()) do
+        if h ~= game.Players.LocalPlayer then
+            local char = h.Character
+            if char then
+                local humanoid = char:WaitForChild("Humanoid")
+                if humanoid then
+                    local head = char:WaitForChild("Head")
+                    if head then
+                        local b = head:FindFirstChild("BillName")
+                        if nesp and not b then
+                            name(char:WaitForChild("Head"), char.Name, h, nesp)
+                        elseif not Name:Get() and b then
+                            b:Destroy()
+                        end
+
+                        local h = head:FindFirstChild("BillHP")
+                        if hesp and not h then
+                            health(char:WaitForChild("Head"), math.floor(humanoid.Health), humanoid, hesp)
+                        elseif not hesp and h then
+                            h:Destroy()
+                        end
+
+                        local d = head:FindFirstChild("BillDistance")
+                        if desp and not d then
+                            local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - char.Head.Position).magnitude
+                            distance(char:WaitForChild("Head"), distanceValue, head, desp)
+                        elseif not desp and d then
+                            d:Destroy()
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
 
 ---------------------------CLOSE ESP
