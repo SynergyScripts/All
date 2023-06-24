@@ -19,6 +19,9 @@ local ownerusername = "EzPScript"
 ----------------------------------------------------CLOSE LOCALS----------------------------------------------
 ----------------------------------------GETGENV()-------------------------------------------------------
 getgenv().InfiniteJump = false
+getgenv().flyKeyDown = nil
+getgenv().flyKeyUp = nil
+getgenv().FlyUpdated = nil
 ---------------------------------------------CLOSE GETGENV()------------------------------------
 
 function msg(a)--ignore this
@@ -37,8 +40,6 @@ end
 ----CLOSE TELEPORTS---------------------------------------------------------------
 
 ------------------------FLY-----------------------------------------------
-getgenv().flyKeyDown = nil
-getgenv().flyKeyUp = nil
        FLYING = false
        iyflyspeed = 0.25
        vehicleflyspeed = 0.25
@@ -59,6 +60,7 @@ getgenv().flyKeyUp = nil
            local aA = 0
            local function aB()
                FLYING = true
+getgenv().FlyUpdated = true
                local aC = Instance.new("BodyGyro")
                local aD = Instance.new("BodyVelocity")
                aC.P = 9e4
@@ -79,7 +81,7 @@ getgenv().flyKeyUp = nil
                                iyflyspeed = speed
                                vehicleflyspeed = speed
                            end
-                           if aw == false then
+                           if aw == false or getgenv().FlyUpdated == true then
                              FLYING = false
            if getgenv().flyKeyDown or getgenv().flyKeyUp then
                flyKeyDown:Disconnect()
