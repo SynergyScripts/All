@@ -14,6 +14,7 @@ local Character = LocalPlayer.Character
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
 local Head = Character:WaitForChild("Head")
 local Humanoid = Character:WaitForChild("Humanoid")
+local Mouse = LocalPlayer:GetMouse()
 local ownerusername = "EzPScript"
 ----------------------------------------------------CLOSE LOCALS----------------------------------------------
 ----------------------------------------GETGENV()-------------------------------------------------------
@@ -34,6 +35,148 @@ function teleporttoplayer(playername)--this is for teleport to player, for examp
 end
 
 ----CLOSE TELEPORTS---------------------------------------------------------------
+
+------------------------FLY-----------------------------------------------
+getgenv().flyKeyDown = nil
+getgenv().flyKeyUp = nil
+       FLYING = false
+       iyflyspeed = 0.25
+       vehicleflyspeed = 0.25
+       function fly(aw, speed)
+           repeat
+               wait()
+           until Players.LocalPlayer and Players.LocalPlayer.Character and Players.LocalPlayer.Character.HumanoidRootPart and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+           repeat
+               wait()
+           until Mouse
+           if getgenv().flyKeyDown or getgenv().flyKeyUp then
+               flyKeyDown:Disconnect()
+               flyKeyUp:Disconnect()
+           end
+           local ax = Players.LocalPlayer.Character.HumanoidRootPart
+           local ay = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+           local az = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+           local aA = 0
+           local function aB()
+               FLYING = true
+               local aC = Instance.new("BodyGyro")
+               local aD = Instance.new("BodyVelocity")
+               aC.P = 9e4
+               aC.Parent = ax
+               aD.Parent = ax
+               aC.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+               aC.cframe = ax.CFrame
+               aD.velocity = Vector3.new(0, 0, 0)
+               aD.maxForce = Vector3.new(9e9, 9e9, 9e9)
+               task.spawn(
+                   function()
+                       repeat
+                           wait()
+                           if not aw and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+                               Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").PlatformStand = true
+                           end
+                           if aw then
+                               iyflyspeed = speed
+                               vehicleflyspeed = speed
+                           end
+                           if aw == false then
+                             FLYING = false
+           if getgenv().flyKeyDown or getgenv().flyKeyUp then
+               flyKeyDown:Disconnect()
+               flyKeyUp:Disconnect()
+           end
+           if Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+               Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+           end
+           pcall(
+               function()
+                   workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+               end
+           )
+                           end
+                           if ay.L + ay.R ~= 0 or ay.F + ay.B ~= 0 or ay.Q + ay.E ~= 0 then
+                               aA = 50
+                           elseif not (ay.L + ay.R ~= 0 or ay.F + ay.B ~= 0 or ay.Q + ay.E ~= 0) and aA ~= 0 then
+                               aA = 0
+                           end
+                           if ay.L + ay.R ~= 0 or ay.F + ay.B ~= 0 or ay.Q + ay.E ~= 0 then
+                               aD.velocity =
+                                   (workspace.CurrentCamera.CoordinateFrame.lookVector * (ay.F + ay.B) +
+                                   workspace.CurrentCamera.CoordinateFrame *
+                                       CFrame.new(ay.L + ay.R, (ay.F + ay.B + ay.Q + ay.E) * 0.2, 0).p -
+                                   workspace.CurrentCamera.CoordinateFrame.p) *
+                                   aA
+                               az = {F = ay.F, B = ay.B, L = ay.L, R = ay.R}
+                           elseif ay.L + ay.R == 0 and ay.F + ay.B == 0 and ay.Q + ay.E == 0 and aA ~= 0 then
+                               aD.velocity =
+                                   (workspace.CurrentCamera.CoordinateFrame.lookVector * (az.F + az.B) +
+                                   workspace.CurrentCamera.CoordinateFrame *
+                                       CFrame.new(az.L + az.R, (az.F + az.B + ay.Q + ay.E) * 0.2, 0).p -
+                                   workspace.CurrentCamera.CoordinateFrame.p) *
+                                   aA
+                           else
+                               aD.velocity = Vector3.new(0, 0, 0)
+                           end
+                           aC.cframe = workspace.CurrentCamera.CoordinateFrame
+                       until not FLYING
+                       ay = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+                       az = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+                       aA = 0
+                       aC:Destroy()
+                       aD:Destroy()
+                       if Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+                           Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid").PlatformStand = false
+                       end
+                   end
+               )
+           end
+           getgenv().flyKeyDown =
+               Mouse.KeyDown:Connect(
+               function(aE)
+                   if aE:lower() == "w" then
+                       ay.F = aw and vehicleflyspeed or iyflyspeed
+                   elseif aE:lower() == "s" then
+                       ay.B = -(aw and vehicleflyspeed or iyflyspeed)
+                   elseif aE:lower() == "a" then
+                       ay.L = -(aw and vehicleflyspeed or iyflyspeed)
+                   elseif aE:lower() == "d" then
+                       ay.R = aw and vehicleflyspeed or iyflyspeed
+                   elseif QEfly and aE:lower() == "e" then
+                       ay.Q = (aw and vehicleflyspeed or iyflyspeed) * 2
+                   elseif QEfly and aE:lower() == "q" then
+                       ay.E = -(aw and vehicleflyspeed or iyflyspeed) * 2
+                   end
+                   pcall(
+                       function()
+                           workspace.CurrentCamera.CameraType = Enum.CameraType.Track
+                       end
+                   )
+               end
+           )
+           getgenv().flyKeyUp =
+               Mouse.KeyUp:Connect(
+               function(aE)
+                   if aE:lower() == "w" then
+                       ay.F = 0
+                   elseif aE:lower() == "s" then
+                       ay.B = 0
+                   elseif aE:lower() == "a" then
+                       ay.L = 0
+                   elseif aE:lower() == "d" then
+                       ay.R = 0
+                   elseif aE:lower() == "e" then
+                       ay.Q = 0
+                   elseif aE:lower() == "q" then
+                       ay.E = 0
+                   end
+               end
+           )
+           aB()
+       end
+
+
+
+-----------------------CLOSE  FLY------------------------------------------------
 
 -- ESP---------------------LOOK THE CLOSE ESP FOR UNDERSTAND HOW TO USE  THIS
 local nesp = false
