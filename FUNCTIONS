@@ -276,4 +276,5 @@ if you want desactivate just change the true to false, for example
 name(false)
 health(false)
 distance(false)
+]]--
 ---------------------------CLOSE ESP--
