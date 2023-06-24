@@ -1,5 +1,4 @@
-print("ms")
-wait(10)
+
 --[[
 FFFFFFFFF    UU      UU    NN      NN    CCCCCCCC    TTTTTTTTTT    IIIIIIIII    OOOOOOOOO    NNN      NN    SSSSSSSS
 FF          UU      UU    NNN     NN   CC                TT          II      OO        OO   NNNN     NN  SS        
@@ -9,10 +8,24 @@ FF             UUUU       NN      NN    CCCCCCCC        TT        IIIIIIIII    O
 
 ]]--
 
+local me = game.Players.LocalPlayer
+local mename = me.Name
+local mechar = me.Character
+local meroot = mechar:WaitForChild("HumanoidRootPart")
+local mehead = mechar:WaitForChild("Head")
+local mehum = mechar:WaitForChild("Humanoid")
 function msg(a)
     print(a)
 end
 
+-- Teleports
+function teleport(x, y, z)
+meroot.CFrame = CFrame.new(x, y, z)
+end
+function teleporttoplayer(playername)
+meroot.CFrame = CFrame.new(game.Players[playername].Character.PrimaryPart.Position)
+end
+----CLOSE TELEPORTS---------------------------------------------------------------
 -- ESP
 local nesp = false
 local desp = false
