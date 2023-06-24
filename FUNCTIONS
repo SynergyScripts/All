@@ -204,14 +204,18 @@ function updateESP3()
                 i.TextColor3 = Color3.fromRGB(255, 255, 255)
 
                 local function updateDistance()
-                    local distanceValue = (LocalPlayer.Character:WaitForChild("Head").Position - v.Character:WaitForChild("Head").Position).magnitude
+local char = v.Character
+if char then
+local aso = char:WaitForChild("Head")
+if aso then
+                    local distanceValue = (LocalPlayer.Character:WaitForChild("Head").Position - aso.Position).magnitude
                     i.Text = "   |" .. math.floor(distanceValue) .. "|"
+end
+end
                 end
+updateDistance()
+game:GetService("RunService").Heartbeat:Connect(updateDistance)
 
-                while true do
-wait(.2)
-                    updateDistance()
-                end
             elseif not desp then
                 local character = v.Character
                 if character then
