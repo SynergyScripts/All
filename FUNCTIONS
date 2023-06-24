@@ -134,15 +134,15 @@ game.Players.PlayerAdded:Connect(function(plr)
             if humanoid then
                 local head = char:WaitForChild("Head")
                 if head then
-                    if Name:Get() then
-                        name(char:WaitForChild("Head"), char.Name, plr)
+                    if nesp then
+                        name(char:WaitForChild("Head"), char.Name, plr, nesp)
                     end
-                    if Health:Get() then
-                        health(char:WaitForChild("Head"), math.floor(humanoid.Health), humanoid)
+                    if hesp then
+                        health(char:WaitForChild("Head"), math.floor(humanoid.Health), humanoid, hesp)
                     end
-                    if Distance:Get() then
+                    if desp then
                         local distanceValue = (game.Players.LocalPlayer.Character.Head.Position - char.Head.Position).magnitude
-                        distance(char:WaitForChild("Head"), distanceValue, head)
+                        distance(char:WaitForChild("Head"), distanceValue, head, desp)
                     end
                 end
             end
@@ -159,7 +159,6 @@ game.Players.PlayerRemoving:Connect(function(plr)
 end)
 
 game:GetService("RunService").Heartbeat:Connect(function()
-    updateESPSettings()
 
     for i, h in pairs(game.Players:GetPlayers()) do
         if h ~= game.Players.LocalPlayer then
